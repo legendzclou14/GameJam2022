@@ -24,11 +24,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"TriggerEnter: {other.name}");
         if (other.gameObject.CompareTag("DamagePlayer"))
         {
             DamagingObject damagingObject = other.gameObject.GetComponent<DamagingObject>();
             _currentHP -= damagingObject.DamageAmount;
+            Debug.Log("Damaged player!");
+            Destroy(other.gameObject);
             CheckHP();
         }
     }

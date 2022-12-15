@@ -7,7 +7,6 @@ public class DamagingObject : MonoBehaviour
     [SerializeField] private bool _moving = false;
     [SerializeField] private Direction _movementDirection = Direction.LEFT;
     [SerializeField] private float _speed = 0.1f;
-    [SerializeField] private float _lifetime = 1.0f;
     private Vector3 _updateMovement;
     public int DamageAmount = 1;
 
