@@ -8,11 +8,6 @@ public class UI : MonoBehaviour
     [SerializeField] Slider _playerHPSlider = null;
     [SerializeField] Slider _enemyHPSlider = null;
 
-    private void Awake()
-    {
-        StartCoroutine(StartOfGame());
-    }
-
     private void OnDestroy()
     {
         StopAllCoroutines();
@@ -50,5 +45,22 @@ public class UI : MonoBehaviour
 
         GameLogicManager.Instance.Player.OnHealthChanged += UpdatePlayerHP;
         GameLogicManager.Instance.EnemyBoss.OnHealthChanged += UpdateEnemyHP;
+    }
+
+    public IEnumerator FillEnemyBar()
+    {
+        float timer = 0;
+        float amount = 0;
+        float animTime = 2;
+        while (timer < animTime)
+        {
+            amount = Mathf.Lerp(0, 1, timer / animTime);
+            _enemyHPSlider.value = amount;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        amount = 1;
+        _enemyHPSlider.value = amount;
     }
 }

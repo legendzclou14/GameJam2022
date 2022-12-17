@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHP;
     private int _currentHP = 0;
+    private bool _canTakeDamage = false;
+    public bool AtkBoostEnabled { get; private set; } = false;
 
     public Action<float> OnHealthChanged;
 
@@ -15,11 +18,19 @@ public class Player : MonoBehaviour
         _currentHP = _maxHP;
     }
 
+    public void OnStartGame()
+    {
+        _canTakeDamage = true;
+    }
+
     public void Damage(int damageAmount)
     {
-        _currentHP -= damageAmount;
-        Debug.Log("Damaged player!");
-        CheckHP();
+        if (_canTakeDamage)
+        {
+            _currentHP -= damageAmount;
+            Debug.Log($"Damaged player for {damageAmount}!");
+            CheckHP();
+        }
     }
 
     private void CheckHP()
@@ -34,5 +45,60 @@ public class Player : MonoBehaviour
         {
             GameLogicManager.Instance.GameOver(false);
         }
+    }
+
+    public void UseAtkBoost(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (Inventory.Instance.CanUse(ItemType.ATK_BOOST) && AtkBoostEnabled == false)
+            {
+                Debug.Log("atkboost");
+                StartCoroutine(StartAtkBoost(Inventory.Instance.AtkBoostTime));
+            }
+        }
+    }
+
+    public void UseShield(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log($"Context performed. _canTakeDamage: {_canTakeDamage}.");
+            if (Inventory.Instance.CanUse(ItemType.SHIELD) && _canTakeDamage == true)
+            {
+                Debug.Log("shield");
+                StartCoroutine(SpawnShield(Inventory.Instance.ShieldTime));
+            }
+        }
+    }
+
+    public void UseHeal(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (_currentHP < _maxHP && Inventory.Instance.CanUse(ItemType.HEAL))
+            {
+                Debug.Log("heal");
+                _currentHP += Inventory.Instance.HealAmount;
+                CheckHP();
+            }
+        }
+    }
+
+    private IEnumerator SpawnShield(float time)
+    {
+        //spawn shield or smth idk
+        _canTakeDamage = false;
+        yield return new WaitForSeconds(time);
+        _canTakeDamage = true;
+        //unspawn sheild
+    }
+
+    private IEnumerator StartAtkBoost(float time)
+    {
+        //vfx?
+        AtkBoostEnabled = true;
+        yield return new WaitForSeconds(time);
+        AtkBoostEnabled = false;
     }
 }

@@ -33,11 +33,11 @@ public class PillarAttack : MonoBehaviour
                 int x;
                 do
                 {
-                    x = Random.Range(-8, 6);
+                    x = Random.Range(-4, 2);
                 }
                 while (xPosUsed.Contains(x));
 
-                Vector3 spawnPos = new Vector3(x, 0, 0);
+                Vector3 spawnPos = new Vector3(x*2, 0, 0);  //*2 so they arent besides one eachother.
 
                 GameObject.Instantiate(_pillarPrefab, spawnPos, Quaternion.identity, GameLogicManager.Instance.EnemyAttackParent);
             }

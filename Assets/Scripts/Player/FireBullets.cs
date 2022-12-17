@@ -8,15 +8,17 @@ using UnityEngine.InputSystem.Interactions;
 public class FireBullets : MonoBehaviour
 {
     [SerializeField] private int _shotsPerSecond = 1;
-    [SerializeField] private GameObject _bulletPrefab = null;
+    [SerializeField] protected GameObject _bulletPrefab = null;
     private Coroutine _firingCoroutine = null;
     private bool _firing = false;
     public bool Firing { get { return _firing; } }
+    private Player _linkedPlayer = null;
 
-    public Action IsFiring;
+    public Action IsFiring; 
 
-    private void Awake() 
+    private void Awake()
     {
+        _linkedPlayer = GetComponent<Player>();
         _firingCoroutine = StartCoroutine(FireCoroutine());
     }
 
@@ -39,13 +41,22 @@ public class FireBullets : MonoBehaviour
         {
             if (_firing)
             {
-                GameObject.Instantiate(_bulletPrefab, transform.position, transform.rotation, GameLogicManager.Instance.BulletParent);
+                InstantiateBullet();
                 yield return delay;
             }
             else
             {
                 yield return null;
             }
+        }
+    }
+
+    private void InstantiateBullet()
+    {
+        GameObject bullet = GameObject.Instantiate(_bulletPrefab, transform.position, transform.rotation, GameLogicManager.Instance.BulletParent);
+        if (_linkedPlayer.AtkBoostEnabled)
+        {
+            bullet.GetComponent<DamagingObject>().DamageAmount *= Inventory.Instance.AtkBoostMultiplier;
         }
     }
 }

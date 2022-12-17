@@ -9,7 +9,7 @@ public class DamagingObject : MonoBehaviour
     [SerializeField] private float _speed = 0.1f;
     [SerializeField] private float _lifetime = 2f;
     [SerializeField] private bool _destroyOnHit = true;
-    [SerializeField] private int _damageAmount = 1;
+    public int DamageAmount = 1;
 
     private bool _damageTarget;
     private Vector3 _updateMovement;
@@ -67,11 +67,11 @@ public class DamagingObject : MonoBehaviour
         {
             if (gameObject.CompareTag("DamagePlayer"))
             {
-                GameLogicManager.Instance.Player.Damage(_damageAmount);
+                GameLogicManager.Instance.Player.Damage(DamageAmount);
             }
             else if (gameObject.CompareTag("DamageEnemy"))
             {
-                GameLogicManager.Instance.EnemyBoss.Damage(_damageAmount);
+                GameLogicManager.Instance.EnemyBoss.Damage(DamageAmount);
             }
 
             if (_destroyOnHit)
