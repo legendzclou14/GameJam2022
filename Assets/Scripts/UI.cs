@@ -30,7 +30,7 @@ public class UI : MonoBehaviour
         _enemyHPSlider.value = hp;
     }
 
-    private IEnumerator StartOfGame()
+    public IEnumerator StartOfGame()
     {
         float timer = 0;
         float amount = 0;

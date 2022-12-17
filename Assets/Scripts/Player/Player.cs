@@ -25,8 +25,11 @@ public class Player : MonoBehaviour
     private void CheckHP()
     {
         _currentHP = _currentHP > _maxHP ? _maxHP : _currentHP;
+        if (OnHealthChanged != null)
+        {
+            OnHealthChanged.Invoke((float)_currentHP / _maxHP);
+        }
 
-        OnHealthChanged.Invoke((float)_currentHP / _maxHP);
         if (_currentHP < 0)
         {
             GameLogicManager.Instance.GameOver(false);
