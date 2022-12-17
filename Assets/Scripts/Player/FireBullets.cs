@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,11 @@ public class FireBullets : MonoBehaviour
 {
     [SerializeField] private int _shotsPerSecond = 1;
     [SerializeField] private GameObject _bulletPrefab = null;
-    [SerializeField] private Transform _bulletParent = null;
     private Coroutine _firingCoroutine = null;
     private bool _firing = false;
+    public bool Firing { get { return _firing; } }
+
+    public Action IsFiring;
 
     private void Awake() 
     {
@@ -25,6 +28,7 @@ public class FireBullets : MonoBehaviour
     public void FireInput(InputAction.CallbackContext context)
     {
         _firing = context.performed;
+        IsFiring.Invoke();
     }
 
     private IEnumerator FireCoroutine()
@@ -35,7 +39,7 @@ public class FireBullets : MonoBehaviour
         {
             if (_firing)
             {
-                GameObject.Instantiate(_bulletPrefab, transform.position, transform.rotation, _bulletParent);
+                GameObject.Instantiate(_bulletPrefab, transform.position, transform.rotation, GameLogicManager.Instance.BulletParent);
                 yield return delay;
             }
             else

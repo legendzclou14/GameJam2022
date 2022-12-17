@@ -16,10 +16,10 @@ GameObject:
   - component: {fileID: 734880236}
   - component: {fileID: 2837484353940192073}
   - component: {fileID: 4681803591330674992}
-  - component: {fileID: 734880237}
+  - component: {fileID: 596731299}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 6481541640427821501}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac95aaebb3f984c40aefbc487d1c34c1, type: 3}
   m_Color: {r: 0.9622642, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,7 +131,19 @@ MonoBehaviour:
     m_ActionId: 204a09d5-b241-463b-a2b8-8eccb6cb40e2
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2837484353940192073}
+        m_TargetAssemblyTypeName: FireBullets, Assembly-CSharp
+        m_MethodName: FireInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c81b07c2-31ac-4581-b585-c65acd589973
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -205,6 +217,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementMultiplier: 0.25
+  _spriteRenderer: {fileID: 724041598254168242}
+  _upSprite:
+  - {fileID: 21300000, guid: c4f69429ebe9e6a42b09c7f7dd058e9e, type: 3}
+  - {fileID: 21300000, guid: a1b591027ab1a6044b94b4f69f6967d7, type: 3}
+  _downSprite:
+  - {fileID: 21300000, guid: 218cf1c5ed6bef74ab1e9c6f44b29d10, type: 3}
+  - {fileID: 21300000, guid: f6403a46d5842a74f8b401704a2e56d6, type: 3}
+  _leftSprite:
+  - {fileID: 21300000, guid: d8e32407456fe6e4f83bd16f2c3a2508, type: 3}
+  - {fileID: 21300000, guid: bbd3514b9cfd28645b504a400d0d777f, type: 3}
+  _rightSprite:
+  - {fileID: 21300000, guid: 01e3680b0598b9d48a47bcf086b3528e, type: 3}
+  - {fileID: 21300000, guid: 85fb151a0a5cddd49a6e93f87071066c, type: 3}
+  _idleSprite:
+  - {fileID: 21300000, guid: ac95aaebb3f984c40aefbc487d1c34c1, type: 3}
+  - {fileID: 21300000, guid: e2f4c1d8272abb4428fd050ce8cc1766, type: 3}
+  _spriteDeadzone: 0.5
 --- !u!114 &734880236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,9 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f18cc898c39264589d800a6b1f9945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotsPerSecond: 3
+  _shotsPerSecond: 8
   _bulletPrefab: {fileID: 3731021275330437114, guid: a661ba03829a18c428255118e7b600d1, type: 3}
-  _bulletParent: {fileID: 0}
 --- !u!50 &4681803591330674992
 Rigidbody2D:
   serializedVersion: 4
@@ -253,8 +281,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &734880237
-CircleCollider2D:
+--- !u!61 &596731299
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -267,5 +295,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.26, y: 3.08}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 3.26, y: 3.08}
+  m_EdgeRadius: 0

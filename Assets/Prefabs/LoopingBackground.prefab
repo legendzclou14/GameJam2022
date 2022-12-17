@@ -60,8 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae8c0e2e31e2e443bf9775bf1b7561b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imagePrefabToLoop: {fileID: 4478763365721392206, guid: 5401b633f852f27469e3c4f2ecbfaad5, type: 3}
-  _speed: 1
+  _speed: 5
   _bgTransforms:
   - {fileID: 8549239049482534754}
   - {fileID: 905991022837067624}
