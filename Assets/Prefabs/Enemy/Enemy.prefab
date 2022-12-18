@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 6795107971320323110}
   - component: {fileID: 9147023830874160861}
   - component: {fileID: 996482384165281016}
+  - component: {fileID: 8014282477579030674}
+  - component: {fileID: 2832197714553397643}
+  - component: {fileID: 8732395735394833616}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -28,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7380671455198873482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,9 +75,15 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+<<<<<<< Updated upstream
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 0, g: 0.06205868, b: 0.8773585, a: 1}
+=======
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 842b4b206fdf0ce4bbb3bf94c52e2439, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+>>>>>>> Stashed changes
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,8 +107,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHPFirstPhase: 200
   _maxHPSecondPhase: 200
+<<<<<<< Updated upstream
   _timeBetweenAttacksPhaseOne: 15
   _timeBetweenAttacksPhaseTwo: 15
+=======
+>>>>>>> Stashed changes
   _zigZagAttackPrefab: {fileID: 6548896863618719018, guid: eb6a52e7dd144f542ae77e660c5765af, type: 3}
   _pillarAttackPrefab: {fileID: 1778683452560475130, guid: 8fef34d4aece3d64c945b151d0d3813c, type: 3}
   _bombAttackPrefab: {fileID: 2035768046561911088, guid: d71c2a5b7a74e4240895d1f95b310529, type: 3}
@@ -120,3 +132,49 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8014282477579030674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7380671455198873482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpriteLibraryAsset: {fileID: 11400000, guid: 7ef97be993060164b8456bc59b49cdbc, type: 2}
+--- !u!114 &2832197714553397643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7380671455198873482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 7732217.5
+  m_labelHash: 0.0000000034458738
+--- !u!95 &8732395735394833616
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7380671455198873482}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 71d42909e11dad348aedcf49d48f26db, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

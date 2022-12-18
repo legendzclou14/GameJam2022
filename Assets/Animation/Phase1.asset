@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: Phase1
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: IDLE
+    m_Hash: -357476191
+    m_CategoryList:
+    - m_Name: IDLE_1
+      m_Hash: -24580735
+      m_Sprite: {fileID: 21300000, guid: 37d27590139643a40aa8023dd4050434, type: 3}
+    - m_Name: IDLE_2
+      m_Hash: 1719778363
+      m_Sprite: {fileID: 21300000, guid: 6384abd6e55b9c0429e6d60a37dddcb1, type: 3}
+    - m_Name: IDLE_3
+      m_Hash: 294030509
+      m_Sprite: {fileID: 21300000, guid: 0260498f7a5a6dc449740614246ae86e, type: 3}
+  - m_Name: BULLET
+    m_Hash: 1256978419
+    m_CategoryList:
+    - m_Name: BULLET_1
+      m_Hash: 829213812
+      m_Sprite: {fileID: 21300000, guid: 842b4b206fdf0ce4bbb3bf94c52e2439, type: 3}
+    - m_Name: BULLET_2
+      m_Hash: -1469735474
+      m_Sprite: {fileID: 21300000, guid: 4df11b020f4de7d41aaa909fed29a99f, type: 3}
+    - m_Name: BULLET_3
+      m_Hash: -547181224
+      m_Sprite: {fileID: 21300000, guid: 17b5b7f8006588f4c99a27ea53091732, type: 3}
+    - m_Name: BULLET_4
+      m_Hash: 1090926843
+      m_Sprite: {fileID: 21300000, guid: 7447579170ab6334183870f47bb4e269, type: 3}
+    - m_Name: BULLET_5
+      m_Hash: 906037357
+      m_Sprite: {fileID: 21300000, guid: a67fc10271bba364cab6776845ce86c4, type: 3}
+    - m_Name: BULLET_6
+      m_Hash: -1358407209
+      m_Sprite: {fileID: 21300000, guid: 0aba3add3cc09db4e8b3c508b0397b50, type: 3}
+    - m_Name: BULLET_7
+      m_Hash: -670078655
+      m_Sprite: {fileID: 21300000, guid: 2dddd0232ff0ba449885b854f8885dd6, type: 3}
+    - m_Name: BULLET_8
+      m_Hash: 1219523792
+      m_Sprite: {fileID: 21300000, guid: 94d43d70c26f9574db0c053dde8fa08f, type: 3}
+    - m_Name: BULLET_9
+      m_Hash: 1068975174
+      m_Sprite: {fileID: 21300000, guid: d69cecd25c20763419ce233fdcd57d37, type: 3}
+    - m_Name: BULLET_10
+      m_Hash: -1551759672
+      m_Sprite: {fileID: 21300000, guid: 3fabf831ea83bf04994244a94da73f1a, type: 3}
+    - m_Name: BULLET_11
+      m_Hash: -729467298
+      m_Sprite: {fileID: 21300000, guid: 6dc80775ae6ff8e4cb208ab0d173b72b, type: 3}
+  - m_Name: PILLAR
+    m_Hash: 753553105
+    m_CategoryList:
+    - m_Name: PILLAR_1
+      m_Hash: 610527101
+      m_Sprite: {fileID: 21300000, guid: fced5264d76d3e9408a1e2517208aee4, type: 3}
+    - m_Name: PILLAR_2
+      m_Hash: -1117079865
+      m_Sprite: {fileID: 21300000, guid: 57c889423497c724da70d669415b1fe0, type: 3}
+    - m_Name: PILLAR_3
+      m_Hash: -898791855
+      m_Sprite: {fileID: 21300000, guid: 1c2b9c0e7d4ff344ab948c30db6b1611, type: 3}
+    - m_Name: PILLAR_4
+      m_Hash: 1409881074
+      m_Sprite: {fileID: 21300000, guid: 8b33f9b858c8c1347a440437dde8307a, type: 3}
+    - m_Name: PILLAR_5
+      m_Hash: 588129124
+      m_Sprite: {fileID: 21300000, guid: 3180d1f2b435413429732a723bb117b3, type: 3}
+    - m_Name: PILLAR_6
+      m_Hash: -1173916962
+      m_Sprite: {fileID: 21300000, guid: a1691a5613b07bf4e9d29043c41c7de0, type: 3}
+    - m_Name: PILLAR_7
+      m_Hash: -855621048
+      m_Sprite: {fileID: 21300000, guid: 77c7978b0fb523044a28f5f90afc0e0c, type: 3}
+    - m_Name: PILLAR_8
+      m_Hash: 1572823001
+      m_Sprite: {fileID: 21300000, guid: 22fd56654bcde924794beef5dea0a13c, type: 3}
+    - m_Name: PILLAR_9
+      m_Hash: 716730191
+      m_Sprite: {fileID: 21300000, guid: a949a3ebe2f7d4945a6a8719d3565211, type: 3}
+    - m_Name: PILLAR_10
+      m_Hash: -632573625
+      m_Sprite: {fileID: 21300000, guid: 06a50494ca067684fa6327d988a976f3, type: 3}
+    - m_Name: PILLAR_11
+      m_Hash: -1387494959
+      m_Sprite: {fileID: 21300000, guid: b8cbf5391d2ff914fa4075fea11cca1a, type: 3}
+  - m_Name: BOMB
+    m_Hash: -1231383389
+    m_CategoryList:
+    - m_Name: BOMB_1
+      m_Hash: 1600937395
+      m_Sprite: {fileID: 21300000, guid: d5b76ce641144ec4e99185a47dbc0781, type: 3}
+    - m_Name: BOMB_2
+      m_Hash: -966456311
+      m_Sprite: {fileID: 21300000, guid: 99023040455f53b4a8c9d2659223ad29, type: 3}
+    - m_Name: BOMB_3
+      m_Hash: -1318962017
+      m_Sprite: {fileID: 21300000, guid: d19479e7710195541b9d4040a27f0b6b, type: 3}
+    - m_Name: BOMB_4
+      m_Hash: 788965692
+      m_Sprite: {fileID: 21300000, guid: e86a79a4386c4174bbe9350ac2475f72, type: 3}
+    - m_Name: BOMB_5
+      m_Hash: 1476499882
+      m_Sprite: {fileID: 21300000, guid: f139924cec02e414993f9f1fcd27e79c, type: 3}
+    - m_Name: BOMB_6
+      m_Hash: -1056389104
+      m_Sprite: {fileID: 21300000, guid: fea3b952eb68981479a63c6abc596004, type: 3}
+    - m_Name: BOMB_7
+      m_Hash: -1240467322
+      m_Sprite: {fileID: 21300000, guid: a8d14be880c4ed847bc577900302d522, type: 3}
+    - m_Name: BOMB_8
+      m_Hash: 649127191
+      m_Sprite: {fileID: 21300000, guid: fabbd8cda3ac10d4499c7ff609571f57, type: 3}
+    - m_Name: BOMB_9
+      m_Hash: 1371002241
+      m_Sprite: {fileID: 21300000, guid: c25707bfc446b0a4983d08406b12b9d7, type: 3}
+    - m_Name: BOMB_10
+      m_Hash: -1494462134
+      m_Sprite: {fileID: 21300000, guid: 5f08d4e5aaaa752438eaa19919e56c84, type: 3}
+  - m_Name: DEATH
+    m_Hash: 269686686
+    m_CategoryList:
+    - m_Name: DEATH_1
+      m_Hash: 1094017310
+      m_Sprite: {fileID: 21300000, guid: 91c4ed310ea990c4ebcb94438010f629, type: 3}
+    - m_Name: DEATH_2
+      m_Hash: -667144028
+      m_Sprite: {fileID: 21300000, guid: fdf5dbc785c2be2498dd34683997c55a, type: 3}

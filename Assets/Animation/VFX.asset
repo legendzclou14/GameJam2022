@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: VFX
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: PILLAR
+    m_Hash: 753553105
+    m_CategoryList:
+    - m_Name: PrePillar
+      m_Hash: -908292683
+      m_Sprite: {fileID: 21300000, guid: 5de1be4ce4c83074988e13e8445a7734, type: 3}
+    - m_Name: Pillar
+      m_Hash: -608269215
+      m_Sprite: {fileID: 21300000, guid: 9ef453634b7f65841b42d916a11ca931, type: 3}
+  - m_Name: Bomb
+    m_Hash: 540923433
+    m_CategoryList:
+    - m_Name: Bomb_1
+      m_Hash: 114465641
+      m_Sprite: {fileID: 21300000, guid: 9fe4231d0f0c5b64ca23be534962d33e, type: 3}
+    - m_Name: Bomb_2
+      m_Hash: -1612985645
+      m_Sprite: {fileID: 21300000, guid: 7020d96e71c06b84ebe75cd8a680b76c, type: 3}
+    - m_Name: Bomb_3
+      m_Hash: -388171195
+      m_Sprite: {fileID: 21300000, guid: 72a5029155ce91544ab90799639ca0af, type: 3}
+    - m_Name: Bomb_4
+      m_Hash: 1991798758
+      m_Sprite: {fileID: 21300000, guid: bae23204ba1cf514da3b8919eda9aa55, type: 3}
+    - m_Name: Bomb_5
+      m_Hash: 29319024
+      m_Sprite: {fileID: 21300000, guid: ed7e65e26c5644945a31771b00485b5b, type: 3}
+    - m_Name: Bomb_6
+      m_Hash: -1732899126
+      m_Sprite: {fileID: 21300000, guid: 397aee84279a57d4f9c6419b12ce234f, type: 3}
+    - m_Name: Bomb_7
+      m_Hash: -273596836
+      m_Sprite: {fileID: 21300000, guid: af95141a8a793b44b8603b45625dfa9a, type: 3}
+    - m_Name: Bomb_8
+      m_Hash: 2131633101
+      m_Sprite: {fileID: 21300000, guid: ee1c5ff433fb57a4bb00e7bfccffeb6a, type: 3}
+    - m_Name: Bomb_9
+      m_Hash: 134812507
+      m_Sprite: {fileID: 21300000, guid: 4a0103be23355084198afb3d56727b75, type: 3}
+    - m_Name: Bomb_10
+      m_Hash: -1061956538
+      m_Sprite: {fileID: 21300000, guid: 54fbf2847380a224f8c30896a457853c, type: 3}
+    - m_Name: Bomb_11
+      m_Hash: -1212881712
+      m_Sprite: {fileID: 21300000, guid: 6c49ade6c3dfad242aa0c6c112e5679b, type: 3}
+    - m_Name: Bomb_12
+      m_Hash: 784184682
+      m_Sprite: {fileID: 21300000, guid: 8b32e8fbec139ac4894ef085e8967dd7, type: 3}
+    - m_Name: Bomb_13
+      m_Hash: 1505396220
+      m_Sprite: {fileID: 21300000, guid: f53f5410ca6acfd42b6cc76c845b7002, type: 3}
+    - m_Name: None
+      m_Hash: -542986255
+      m_Sprite: {fileID: 0}
+    - m_Name: BombPre
+      m_Hash: 196750022
+      m_Sprite: {fileID: 21300000, guid: e7c3d313cc4610146a9fb1de9efc6f9c, type: 3}

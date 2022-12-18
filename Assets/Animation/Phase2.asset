@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: Phase2
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: IDLE
+    m_Hash: -357476191
+    m_CategoryList:
+    - m_Name: IDLE_1
+      m_Hash: -24580735
+      m_Sprite: {fileID: 21300000, guid: 069a6f585217da140a912571930d842f, type: 3}
+    - m_Name: IDLE_2
+      m_Hash: 1719778363
+      m_Sprite: {fileID: 21300000, guid: 30452526cd6c3234391ef0a229be9171, type: 3}
+    - m_Name: IDLE_3
+      m_Hash: 294030509
+      m_Sprite: {fileID: 21300000, guid: c9a4f23d7bf0b6d4e8491f0c6a640c43, type: 3}
+  - m_Name: ABILITY
+    m_Hash: 176820262
+    m_CategoryList:
+    - m_Name: ABILITY_1
+      m_Hash: -213005676
+      m_Sprite: {fileID: 21300000, guid: 96620121a5a54b147ab65594e40e2fb5, type: 3}
+    - m_Name: ABILITY_2
+      m_Hash: 1782881070
+      m_Sprite: {fileID: 21300000, guid: 200c9333b5049a14cb5e45996973061a, type: 3}
+    - m_Name: ABILITY_3
+      m_Hash: 490974136
+      m_Sprite: {fileID: 21300000, guid: f884cc26c4515734ba5d0bc7ea0b3de6, type: 3}
+    - m_Name: ABILITY_4
+      m_Hash: -2094580197
+      m_Sprite: {fileID: 21300000, guid: 0fc6ea95adbb7ab49bd38cce2e4b949e, type: 3}
+    - m_Name: ABILITY_5
+      m_Hash: -199225715
+      m_Sprite: {fileID: 21300000, guid: c03bf0a7cb913424689d3c255fadb732, type: 3}
+    - m_Name: ABILITY_6
+      m_Hash: 1831427895
+      m_Sprite: {fileID: 21300000, guid: 094a27bf5f9df934f9bcc64311fd6d7f, type: 3}
+  - m_Name: New Category
+    m_Hash: -1887952825
+    m_CategoryList:
+    - m_Name: DEATHRAY_1
+      m_Hash: 1603533151
+      m_Sprite: {fileID: 21300000, guid: 11ad9e0d60830504ebb7e03ae5f35ba9, type: 3}
+    - m_Name: DEATHRAY_2
+      m_Hash: -962942747
+      m_Sprite: {fileID: 21300000, guid: 17fcac34f0815e04b8e9287132f4d073, type: 3}
+    - m_Name: DEATHRAY_3
+      m_Hash: -1315071885
+      m_Sprite: {fileID: 21300000, guid: 329deda7b378a874aa9bac9454d8b405, type: 3}
+    - m_Name: DEATHRAY_4
+      m_Hash: 804851152
+      m_Sprite: {fileID: 21300000, guid: 142b0e247f8c5ed408ec18c610248a7e, type: 3}
+    - m_Name: DEATHRAY_5
+      m_Hash: 1493056838
+      m_Sprite: {fileID: 21300000, guid: cb786f04990f92448a3fb8380901eb86, type: 3}
+    - m_Name: DEATHRAY_6
+      m_Hash: -1040749316
+      m_Sprite: {fileID: 21300000, guid: b516c138a568d8848866f2807c21ff0b, type: 3}
