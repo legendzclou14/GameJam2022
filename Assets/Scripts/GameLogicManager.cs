@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameLogicManager : MonoBehaviour
@@ -43,7 +44,15 @@ public class GameLogicManager : MonoBehaviour
         EnemyBoss.OnPhaseOneOver += (() => StartCoroutine(StartOfSecondPhase()));
         EnemyBoss.OnPhaseTwoOver += (() => StartCoroutine(StartFinaleTalking()));
         Player.OnPlayerDeath += (() => StartCoroutine(PlayerDeathSequence()));
-        StartCoroutine(StartOfGame());
+
+        if (!Inventory.Instance.HasReachedCheckpoint)
+        {
+            StartCoroutine(StartOfGame());
+        }
+        else
+        {
+            StartCoroutine(StartOfSecondPhase());
+        }
     }
 
     private void OnDestroy()
@@ -64,10 +73,11 @@ public class GameLogicManager : MonoBehaviour
 
     private IEnumerator StartOfGame()
     {
-        Inventory.Instance.RestoreInventory();
-
         IsInDialogue = true;
         _canSkipDialogue = false;
+        Inventory.Instance.RestoreInventory();
+        yield return UI.TotalFadeOut(false, 2f);
+
         UI.TextBoxGO.SetActive(true);
 
         foreach (TalkingCharacter textBox in _introTalking)
@@ -101,6 +111,13 @@ public class GameLogicManager : MonoBehaviour
 
     private IEnumerator StartOfSecondPhase()
     {
+        if (Inventory.Instance.HasReachedCheckpoint)
+        {
+            IsInDialogue = true;
+            _canSkipDialogue = false;
+            Inventory.Instance.RestoreInventory();
+            yield return UI.TotalFadeOut(false, 2f);
+        }
         KillAllAttacks();
 
         IsInDialogue = true;
@@ -133,9 +150,18 @@ public class GameLogicManager : MonoBehaviour
         }
 
         UI.TextBoxGO.SetActive(false);
-        yield return UI.FillEnemyBar();
+        if (Inventory.Instance.HasReachedCheckpoint)
+        {
+            yield return UI.StartOfGame();
+            Player.OnStartGame();
+        }
+        else
+        {
+            yield return UI.FillEnemyBar();
+        }
         IsInDialogue = false;
         EnemyBoss.StartSecondPhase();
+        Inventory.Instance.HasReachedCheckpoint = true;
     }
 
     private IEnumerator StartFinaleTalking()
@@ -156,7 +182,7 @@ public class GameLogicManager : MonoBehaviour
         }
 
         UI.ShowUI(false);
-        yield return Flash(true, false, 2f);
+        yield return UI.TotalFadeOut(true, 2f);
         //load out
     }
 
@@ -167,7 +193,15 @@ public class GameLogicManager : MonoBehaviour
 
         yield return Flash(true, false, 0.01f);
         UI.ShowUI(false);
-        yield return Player.DeathCoroutine();
+        yield return Player.DeathCoroutine(); 
+        yield return UI.TotalFadeOut(true, 2f);
+        SceneManager.LoadScene("BattleScene");
+    }
+
+    private IEnumerator ReloadAfterGameOver()
+    {
+        yield return UI.TotalFadeOut(true, 2f);
+        SceneManager.LoadScene("BattleScene");
     }
 
     public IEnumerator Flash(bool on, bool isWhite = true, float time = 0.35f)

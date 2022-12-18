@@ -18,6 +18,7 @@ public class UI : MonoBehaviour
     [SerializeField] private Image _shieldItem;
     [SerializeField] private Image _healItem;
     [SerializeField] private GameObject[] _UItoHide;
+    [SerializeField] private Image _flashImage;
 
     private void OnDestroy()
     {
@@ -42,6 +43,23 @@ public class UI : MonoBehaviour
         {
             uiElement.SetActive(show);
         }
+    }
+
+    public IEnumerator TotalFadeOut(bool on, float time = 0.35f)
+    {
+        float alphaTarget = on ? 1 : 0;
+        float alphaStart = on ? 0 : 1;
+
+        float timer = 0;
+        float amount = 0;
+        while (timer < time)
+        {
+            amount = Mathf.Lerp(alphaStart, alphaTarget, timer / time);
+            _flashImage.color = new Color(0, 0, 0, amount);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        _flashImage.color = new Color(0, 0, 0, alphaTarget);
     }
 
     public void UseItem(ItemType type)

@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance = null;
 
+    public bool HasReachedCheckpoint = false;
     public int AtkBoostMultiplier = 2;
     public float AtkBoostTime = 5;
     public float ShieldTime = 10;
