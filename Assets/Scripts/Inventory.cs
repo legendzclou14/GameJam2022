@@ -11,13 +11,13 @@ public class Inventory : MonoBehaviour
     public float ShieldTime = 10;
     public int HealAmount = 25;
 
-    private int _atkBoost = 1;
-    private int _shields = 1;
-    private int _heals = 1;
+    private int _atkBoost = 0;
+    private int _shields = 0;
+    private int _heals = 0;
     public int AtkBoost => _atkBoost;
     public int Shields => _shields = 1;
     public int Heals => _heals;
-    private int[] _inventorySaveState = { 0, 0, 0 };  //Atk, shields, heals
+    private int[] _inventorySaveState = { 1, 1, 1 };  //Atk, shields, heals. Put back to 0
 
     void Awake()
     {
@@ -89,6 +89,13 @@ public class Inventory : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void RestoreInventory()
+    {
+        _atkBoost = _inventorySaveState[0];
+        _shields = _inventorySaveState[1];
+        _heals = _inventorySaveState[2];
     }
 }
 

@@ -40,10 +40,10 @@ public class GameLogicManager : MonoBehaviour
             Debug.LogError("Trying to create second GameLogicManager");
         }
 
-        StartCoroutine(StartOfGame());
         EnemyBoss.OnPhaseOneOver += (() => StartCoroutine(StartOfSecondPhase()));
         EnemyBoss.OnPhaseTwoOver += (() => StartCoroutine(StartFinaleTalking()));
         Player.OnPlayerDeath += (() => StartCoroutine(PlayerDeathSequence()));
+        StartCoroutine(StartOfGame());
     }
 
     private void OnDestroy()
@@ -64,6 +64,8 @@ public class GameLogicManager : MonoBehaviour
 
     private IEnumerator StartOfGame()
     {
+        Inventory.Instance.RestoreInventory();
+
         IsInDialogue = true;
         _canSkipDialogue = false;
         UI.TextBoxGO.SetActive(true);
@@ -160,6 +162,7 @@ public class GameLogicManager : MonoBehaviour
     private IEnumerator PlayerDeathSequence()
     {
         KillAllAttacks();
+        IsInDialogue = true;
 
         yield return Flash(true, false, 0.01f);
         yield return Player.DeathCoroutine();

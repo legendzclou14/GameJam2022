@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Animator _animator = null;
     [SerializeField] private int _maxHPFirstPhase = 200;
     [SerializeField] private int _maxHPSecondPhase = 200;
     [SerializeField] private float _timeBetweenAttacksPhaseOne = 15;
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _pillarAttackPrefab;
     [SerializeField] private GameObject _bombAttackPrefab;
     [SerializeField] private GameObject _rayAttackPrefab;
+    private int _idleAnim, _pillarAnim, _bulletAnim, _bombAnim, _deathAnim;
     
     private int _maxHP = 0;
     private int _currentHP = 0;
@@ -27,12 +29,24 @@ public class Enemy : MonoBehaviour
     {
         _maxHP = _maxHPFirstPhase;
         _currentHP = _maxHP;
+
+        _idleAnim = Animator.StringToHash("Idle");
+        _pillarAnim = Animator.StringToHash("Pillar");
+        _bulletAnim = Animator.StringToHash("Bullet");
+        _bombAnim = Animator.StringToHash("Bomb");
+        _deathAnim = Animator.StringToHash("Death");
+    }
+    public void PlayAnimation(int animationID)
+    {
+        if (_animator != null)
+        {
+            _animator.SetTrigger(animationID);
+        }
     }
 
     public void OnStartGame()
     {
         _canTakeDamage = true;
-
         StartCoroutine(PhaseOneAttacks());
     }
 
@@ -56,6 +70,7 @@ public class Enemy : MonoBehaviour
             StopAllCoroutines();
             if (_phase == 1)
             {
+                PlayAnimation(_deathAnim);
                 OnPhaseOneOver.Invoke();
             }
             else
@@ -77,16 +92,19 @@ public class Enemy : MonoBehaviour
 
     public void StartZigZagAttack()
     {
+        PlayAnimation(_bulletAnim);
         GameObject.Instantiate(_zigZagAttackPrefab, GameLogicManager.Instance.EnemyAttackParent);
     }
     
     public void StartPillarAttack()
     {
+        PlayAnimation(_pillarAnim);
         GameObject.Instantiate(_pillarAttackPrefab, GameLogicManager.Instance.EnemyAttackParent);
     }
 
     public void StartBombAttack()
     {
+        PlayAnimation(_bombAnim);
         GameObject.Instantiate(_bombAttackPrefab, GameLogicManager.Instance.EnemyAttackParent);
     }
 
@@ -106,26 +124,29 @@ public class Enemy : MonoBehaviour
 
     private void StartAttack(int attackIndex)
     {
-        switch (attackIndex)
+        if (!GameLogicManager.Instance.IsInDialogue)
         {
-            case 0:
-                StartZigZagAttack();
-                break;
+            switch (attackIndex)
+            {
+                case 0:
+                    StartZigZagAttack();
+                    break;
 
-            case 1:
-                StartPillarAttack();
-                break;
+                case 1:
+                    StartPillarAttack();
+                    break;
 
-            case 2:
-                StartBombAttack();
-                break;
+                case 2:
+                    StartBombAttack();
+                    break;
 
-            case 3:
-                StartRayAttack();
-                break;
+                case 3:
+                    StartRayAttack();
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
     }
 

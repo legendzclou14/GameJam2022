@@ -7,11 +7,13 @@ public class DamagingObject : MonoBehaviour
     [SerializeField] private bool _moving = false;
     [SerializeField] private Direction _movementDirection = Direction.LEFT;
     [SerializeField] private float _speed = 0.1f;
+    [SerializeField] private float _damageDelay = 0;
     [SerializeField] private float _lifetime = 2f;
     [SerializeField] private bool _destroyOnHit = true;
     public int DamageAmount = 1;
 
-    private bool _damageTarget;
+    private bool _damageTarget = false;
+    private bool _canDamage = false;
     private Vector3 _updateMovement;
     private string _targetTag = "";
 
@@ -33,6 +35,8 @@ public class DamagingObject : MonoBehaviour
         {
             _targetTag = "Enemy";
         }
+
+        StartCoroutine(DamageDelay());
     }
 
     private void FixedUpdate() 
@@ -63,7 +67,7 @@ public class DamagingObject : MonoBehaviour
 
     private void DamageOnTick()
     {
-        if (_damageTarget)
+        if (_damageTarget && _canDamage)
         {
             if (gameObject.CompareTag("DamagePlayer"))
             {
@@ -79,6 +83,12 @@ public class DamagingObject : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private IEnumerator DamageDelay()
+    {
+        yield return new WaitForSeconds(_damageDelay);
+        _canDamage = true;
     }
 }
 

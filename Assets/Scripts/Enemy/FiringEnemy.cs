@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FiringEnemy : MonoBehaviour
 {
+    [SerializeField] private float _delayBeforeFiring = 1f;
     [SerializeField] private int _shotsPerSecond = 1;
     [SerializeField] private float _attackTime = 5;
     [SerializeField] [Range(0, 4)] private float _maxHeight = 2;
@@ -25,6 +26,8 @@ public class FiringEnemy : MonoBehaviour
 
     private IEnumerator FireCoroutine()
     {
+        yield return new WaitForSeconds(_delayBeforeFiring);
+
         float delay = 1f / _shotsPerSecond;
         float timer = 0;
         float lastAttackTime = -999;
@@ -43,6 +46,8 @@ public class FiringEnemy : MonoBehaviour
 
     private IEnumerator MovementCoroutine()
     {
+        yield return new WaitForSeconds(_delayBeforeFiring);
+
         float timer = 0;
         Vector3 movement = new Vector3(0, _verticallSpeed, 0);
 
