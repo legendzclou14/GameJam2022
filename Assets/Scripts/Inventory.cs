@@ -14,6 +14,10 @@ public class Inventory : MonoBehaviour
     private int _atkBoost = 1;
     private int _shields = 1;
     private int _heals = 1;
+    public int AtkBoost => _atkBoost;
+    public int Shields => _shields = 1;
+    public int Heals => _heals;
+    private int[] _inventorySaveState = { 0, 0, 0 };  //Atk, shields, heals
 
     void Awake()
     {
@@ -48,6 +52,8 @@ public class Inventory : MonoBehaviour
             default:
                 break;
         }
+
+        _inventorySaveState = new int[] { _atkBoost,  _shields, _heals};
     }
 
     public bool CanUse(ItemType type)

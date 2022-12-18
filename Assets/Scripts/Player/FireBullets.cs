@@ -39,7 +39,7 @@ public class FireBullets : MonoBehaviour
 
         while (true)
         {
-            if (_firing)
+            if (_firing && !GameLogicManager.Instance.IsInDialogue)
             {
                 InstantiateBullet();
                 yield return delay;

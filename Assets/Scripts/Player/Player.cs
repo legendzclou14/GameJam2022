@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public bool AtkBoostEnabled { get; private set; } = false;
 
     public Action<float> OnHealthChanged;
+    public Action OnPlayerDeath;
 
     private void Awake()
     {
@@ -28,7 +29,6 @@ public class Player : MonoBehaviour
         if (_canTakeDamage)
         {
             _currentHP -= damageAmount;
-            Debug.Log($"Damaged player for {damageAmount}!");
             CheckHP();
         }
     }
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
         if (_currentHP < 0)
         {
-            GameLogicManager.Instance.GameOver(false);
+            OnPlayerDeath.Invoke();
         }
     }
 
@@ -63,7 +63,6 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log($"Context performed. _canTakeDamage: {_canTakeDamage}.");
             if (Inventory.Instance.CanUse(ItemType.SHIELD) && _canTakeDamage == true)
             {
                 Debug.Log("shield");
@@ -100,5 +99,11 @@ public class Player : MonoBehaviour
         AtkBoostEnabled = true;
         yield return new WaitForSeconds(time);
         AtkBoostEnabled = false;
+    }
+
+    public IEnumerator DeathCoroutine()
+    {
+        yield return null;
+        //set animation, timer, etc
     }
 }

@@ -45,5 +45,7 @@ public class PillarAttack : MonoBehaviour
             currentRound++;
             yield return delay;
         }
+
+        Destroy(gameObject);
     }
 }

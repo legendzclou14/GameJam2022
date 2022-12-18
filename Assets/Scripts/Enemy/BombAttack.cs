@@ -30,5 +30,7 @@ public class BombAttack : MonoBehaviour
             currentBomb++;
             yield return delay;
         }
+
+        Destroy(gameObject);
     }
 }

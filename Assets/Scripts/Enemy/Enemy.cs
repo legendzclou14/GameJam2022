@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _maxHPFirstPhase = 200;
     [SerializeField] private int _maxHPSecondPhase = 200;
+    [SerializeField] private float _timeBetweenAttacksPhaseOne = 15;
+    [SerializeField] private float _timeBetweenAttacksPhaseTwo = 15;
     [SerializeField] private GameObject _zigZagAttackPrefab;
     [SerializeField] private GameObject _pillarAttackPrefab;
     [SerializeField] private GameObject _bombAttackPrefab;
@@ -18,6 +20,8 @@ public class Enemy : MonoBehaviour
     private bool _canTakeDamage = false;
 
     public Action<float> OnHealthChanged;
+    public Action OnPhaseOneOver;
+    public Action OnPhaseTwoOver;
 
     private void Awake()
     {
@@ -47,13 +51,17 @@ public class Enemy : MonoBehaviour
 
         if (_currentHP <= 0)
         {
+            _canTakeDamage = false;
+            
+            StopAllCoroutines();
             if (_phase == 1)
             {
-                StartCoroutine(StartSecondPhase());
+                OnPhaseOneOver.Invoke();
             }
             else
             {
-                GameLogicManager.Instance.GameOver(true);
+                OnPhaseTwoOver.Invoke();
+                _phase = 3;
             }
         }
     }
@@ -63,7 +71,6 @@ public class Enemy : MonoBehaviour
         if (_canTakeDamage)
         {
             _currentHP -= damageAmount;
-            Debug.Log($"Damaged Enemy for {damageAmount}!");
             CheckHP();
         }
     }
@@ -88,25 +95,130 @@ public class Enemy : MonoBehaviour
         GameObject.Instantiate(_rayAttackPrefab, GameLogicManager.Instance.EnemyAttackParent);
     }
 
-    private IEnumerator StartSecondPhase()
+    public void StartSecondPhase()
     {
-        _canTakeDamage = false;
         _maxHP = _maxHPSecondPhase;
         _currentHP = _maxHP;
-        yield return GameLogicManager.Instance.UI.FillEnemyBar();
-        _phase = 2;
         _canTakeDamage = true;
+        _phase = 2;
+        StartCoroutine(PhaseTwoAttacks());
+    }
+
+    private void StartAttack(int attackIndex)
+    {
+        switch (attackIndex)
+        {
+            case 0:
+                StartZigZagAttack();
+                break;
+
+            case 1:
+                StartPillarAttack();
+                break;
+
+            case 2:
+                StartBombAttack();
+                break;
+
+            case 3:
+                StartRayAttack();
+                break;
+
+            default:
+                break;
+        }
     }
 
     private IEnumerator PhaseOneAttacks()
     {
-        yield return new WaitForSeconds(5);
-        StartZigZagAttack();
-        yield return new WaitForSeconds(15);
-        StartPillarAttack();
-        yield return new WaitForSeconds(15);
-        StartBombAttack();
-        yield return new WaitForSeconds(15);
-        StartRayAttack();
+        int[] startArray = { -1, -1, -1 };
+        int[] choicesArray = { 0, 1, 2 };
+        int[] lastAttackOrder = {-1, -1, -1};
+        int[] currentAttackOrder = { -1, -1, -1};
+        List<int> choices = new List<int>(choicesArray);
+        int currentChoice;
+
+        while (_phase == 1)
+        {
+            do {
+                currentChoice = choices[UnityEngine.Random.Range(0, choices.Count)];
+                currentAttackOrder[0] = currentChoice;
+            } while (currentAttackOrder[0] == lastAttackOrder[2]);
+
+            choices.Remove(currentChoice);
+
+            if (currentAttackOrder[0] == lastAttackOrder[0])
+            {
+                do
+                {
+                    currentChoice = choices[UnityEngine.Random.Range(0, choices.Count)];
+                    currentAttackOrder[1] = currentChoice;
+                } while (currentAttackOrder[1] == lastAttackOrder[1]);
+                choices.Remove(currentChoice);
+            }
+            else
+            {
+                
+                currentChoice = choices[UnityEngine.Random.Range(0, choices.Count)];
+                currentAttackOrder[1] = currentChoice;
+                choices.Remove(currentChoice);
+            }
+
+            currentChoice = choices[0];
+            currentAttackOrder[2] = currentChoice;
+            choices.Remove(currentChoice);
+
+            for (int i = 0; i < 3; i++)
+            {
+                StartAttack(currentAttackOrder[i]);
+                yield return new WaitForSeconds(_timeBetweenAttacksPhaseOne);
+            }
+
+            Array.Copy(currentAttackOrder, lastAttackOrder, 3);
+            Array.Copy(startArray, currentAttackOrder, 3);
+            choices.AddRange(choicesArray);
+        }
+    }
+
+    private IEnumerator PhaseTwoAttacks()
+    {
+        int lastNotUsed = UnityEngine.Random.Range(0, 3);
+        int[] choicesArray = { 0, 1, 2 };
+        List<int> choices = new List<int>(choicesArray);
+        List<int> chosenAttacks = new List<int>();
+        int current;
+
+        while (_phase == 2)
+        {
+            current = lastNotUsed;
+            chosenAttacks.Add(current);
+            choices.Remove(current);
+
+            current = choices[UnityEngine.Random.Range(0, 2)];
+            chosenAttacks.Add(current);
+            choices.Remove(current);
+
+            lastNotUsed = choices[0];
+            choices.Remove(lastNotUsed);
+
+            choices.AddRange(choicesArray);
+
+            if ((float)_currentHP / _maxHP < 0.5f && UnityEngine.Random.Range(0, 3) == 0)
+            {
+                StartAttack(3);
+                Debug.Log("DEATHRAY");
+            }
+            else
+            {
+                foreach(int attackIndex in chosenAttacks)
+                {
+                    StartAttack(attackIndex);
+                }
+                Debug.Log($"{chosenAttacks[0]}, {chosenAttacks[1]}");
+            }
+
+            chosenAttacks.Clear();
+            yield return new WaitForSeconds(_timeBetweenAttacksPhaseTwo);
+        }
     }
 }

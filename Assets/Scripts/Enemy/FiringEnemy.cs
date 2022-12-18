@@ -32,7 +32,7 @@ public class FiringEnemy : MonoBehaviour
         {
             if (timer - lastAttackTime >= delay)
             {
-                GameObject.Instantiate(_bulletPrefab, transform.position, transform.rotation, GameLogicManager.Instance.BulletParent);
+                GameObject.Instantiate(_bulletPrefab, transform.position, transform.rotation, GameLogicManager.Instance.EnemyAttackParent);
                 lastAttackTime = timer;
             }
 
