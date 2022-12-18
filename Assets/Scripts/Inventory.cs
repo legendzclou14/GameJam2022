@@ -16,9 +16,9 @@ public class Inventory : MonoBehaviour
     private int _shields = 0;
     private int _heals = 0;
     public int AtkBoost => _atkBoost;
-    public int Shields => _shields = 1;
+    public int Shields => _shields;
     public int Heals => _heals;
-    private int[] _inventorySaveState = { 1, 1, 1 };  //Atk, shields, heals. Put back to 0
+    private int[] _inventorySaveState = { 0, 0, 0 };  //Atk, shields, heals.
 
     void Awake()
     {
@@ -34,20 +34,24 @@ public class Inventory : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void PickupItem(ItemType type)
+    public string PickupItem(ItemType type)
     {
+        string itemName = "";
         switch (type)
         {
             case ItemType.ATK_BOOST:
                 _atkBoost++;
+                itemName = "Attack Boost";
                 break;
 
             case ItemType.SHIELD:
                 _shields++;
+                itemName = "Shield";
                 break;
 
             case ItemType.HEAL:
                 _heals++;
+                itemName = "Heal";
                 break;
 
             default:
@@ -55,6 +59,7 @@ public class Inventory : MonoBehaviour
         }
 
         _inventorySaveState = new int[] { _atkBoost,  _shields, _heals};
+        return $"{itemName} has been added to inventory!";
     }
 
     public bool CanUse(ItemType type)

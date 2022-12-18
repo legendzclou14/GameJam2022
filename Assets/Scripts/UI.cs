@@ -162,7 +162,8 @@ public class UI : MonoBehaviour
 
 public enum TextBoxTalker
 {
-    PLAYER = 0, 
-    ENEMY_PHASE_ONE = 1,
-    ENEMY_PHASE_TWO = 2
+    PLAYER_BRAVE = 0,
+    PLAYER_SHOOK = 1,
+    ENEMY_PHASE_ONE = 2,
+    ENEMY_PHASE_TWO = 3
 }

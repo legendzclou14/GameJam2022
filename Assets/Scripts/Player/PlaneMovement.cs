@@ -49,6 +49,7 @@ public class PlaneMovement : MonoBehaviour
         else
         {
             _moveInputValue = Vector2.zero;
+            ChangeSprite();
         }
     }
 
@@ -87,5 +88,5 @@ public class PlaneMovement : MonoBehaviour
         transform.position = new Vector2(
             Mathf.Clamp(transform.position.x, cameraRect.xMin, cameraRect.xMax),
             Mathf.Clamp(transform.position.y, cameraRect.yMin, cameraRect.yMax));
-            }
+    }
 }
