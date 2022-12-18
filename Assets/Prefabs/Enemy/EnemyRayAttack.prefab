@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rayPrefab: {fileID: 3227481247910286655, guid: f3a47da3ad576c743a47e76b89a0e764, type: 3}
-  _attackTime: 2
-  _endAngle: 90
+  _attackTime: 5
+  _startAngle: 27.5
+  _endAngle: 135
+  _waitBetweenRounds: 0.5

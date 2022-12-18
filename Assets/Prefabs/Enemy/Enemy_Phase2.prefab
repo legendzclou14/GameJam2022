@@ -203,7 +203,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2780648131970944772}
   - component: {fileID: 6594853843457260456}
-  - component: {fileID: 8878973820205259091}
   - component: {fileID: 584488704937147254}
   - component: {fileID: 5781986638901661456}
   - component: {fileID: 2475466518914536128}
@@ -282,24 +281,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8878973820205259091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7180386549599838212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466b91167c45a61428b45d58850ee055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHPFirstPhase: 200
-  _maxHPSecondPhase: 200
-  _zigZagAttackPrefab: {fileID: 6548896863618719018, guid: eb6a52e7dd144f542ae77e660c5765af, type: 3}
-  _pillarAttackPrefab: {fileID: 1778683452560475130, guid: 8fef34d4aece3d64c945b151d0d3813c, type: 3}
-  _bombAttackPrefab: {fileID: 2035768046561911088, guid: d71c2a5b7a74e4240895d1f95b310529, type: 3}
-  _rayAttackPrefab: {fileID: 3399939647811942065, guid: 08779ac96dcca7a47848c0f30c2949fe, type: 3}
 --- !u!58 &584488704937147254
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -313,9 +294,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.12, y: 2.41}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 6.32
 --- !u!114 &5781986638901661456
 MonoBehaviour:
   m_ObjectHideFlags: 0

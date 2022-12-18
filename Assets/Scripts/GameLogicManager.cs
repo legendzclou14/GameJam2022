@@ -119,7 +119,7 @@ public class GameLogicManager : MonoBehaviour
         UI.TextBoxGO.SetActive(false);
         UI.ClearTextBox();
         yield return Flash(true, true, 3);
-        //second phase spawn?
+        EnemyBoss.SecondPhaseTransition();
         yield return Flash(false, true, 2);
         UI.TextBoxGO.SetActive(true);
 

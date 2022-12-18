@@ -103,7 +103,7 @@ MonoBehaviour:
   _damageDelay: 0
   _lifetime: 4
   _destroyOnHit: 1
-  DamageAmount: 10
+  DamageAmount: 6
 --- !u!50 &296727018919000239
 Rigidbody2D:
   serializedVersion: 4

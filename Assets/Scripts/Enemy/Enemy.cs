@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Animator _animator = null;
+    [SerializeField] private Animator _animatorPhase1 = null;
+    [SerializeField] private Animator _animatorPhase2 = null;
     [SerializeField] private int _maxHPFirstPhase = 200;
     [SerializeField] private int _maxHPSecondPhase = 200;
     [SerializeField] private float _timeBetweenAttacksPhaseOne = 15;
@@ -14,7 +15,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _pillarAttackPrefab;
     [SerializeField] private GameObject _bombAttackPrefab;
     [SerializeField] private GameObject _rayAttackPrefab;
-    private int _idleAnim, _pillarAnim, _bulletAnim, _bombAnim, _deathAnim;
+    [SerializeField] private SpriteRenderer _phase1Renderer;
+    [SerializeField] private GameObject _phase2GO;
+    public Transform RaySpawnPoint;
+    private int _idleAnim, _pillarAnim, _bulletAnim, _bombAnim, _deathAnim, _phase2AbilityAnim, _phase2RayAnim, _phase2IdleAnim;
     
     private int _maxHP = 0;
     private int _currentHP = 0;
@@ -35,13 +39,32 @@ public class Enemy : MonoBehaviour
         _bulletAnim = Animator.StringToHash("Bullet");
         _bombAnim = Animator.StringToHash("Bomb");
         _deathAnim = Animator.StringToHash("Death");
+        _phase2AbilityAnim = Animator.StringToHash("Ability");
+        _phase2RayAnim = Animator.StringToHash("DeathRay");
+        _phase2IdleAnim = Animator.StringToHash("IdlePhase2");
     }
+
     public void PlayAnimation(int animationID)
     {
-        if (_animator != null)
+        if (animationID == _phase2AbilityAnim || animationID == _phase2RayAnim || animationID == _phase2IdleAnim)
         {
-            _animator.SetTrigger(animationID);
+            if (_animatorPhase2 != null)
+            {
+                _animatorPhase2.SetTrigger(animationID);
+                return;
+            }
         }
+
+        if (_animatorPhase1 != null)
+        {
+            _animatorPhase1.SetTrigger(animationID);
+        }
+    }
+
+    public void SecondPhaseTransition()
+    {
+        _phase1Renderer.enabled = false;
+        _phase2GO.SetActive(true);
     }
 
     public void OnStartGame()
@@ -92,24 +115,50 @@ public class Enemy : MonoBehaviour
 
     public void StartZigZagAttack()
     {
-        PlayAnimation(_bulletAnim);
+        if (_phase == 1)
+        {
+            PlayAnimation(_bulletAnim);
+        }
+        else if (_phase == 2)
+        {
+            PlayAnimation(_phase2AbilityAnim);
+        }
+
         GameObject.Instantiate(_zigZagAttackPrefab, GameLogicManager.Instance.EnemyAttackParent);
     }
     
     public void StartPillarAttack()
     {
-        PlayAnimation(_pillarAnim);
+        if (_phase == 1)
+        {
+            PlayAnimation(_pillarAnim);
+        }
+        else if (_phase == 2)
+        {
+            PlayAnimation(_phase2AbilityAnim);
+        }
+
         GameObject.Instantiate(_pillarAttackPrefab, GameLogicManager.Instance.EnemyAttackParent);
     }
 
     public void StartBombAttack()
     {
-        PlayAnimation(_bombAnim);
+        if (_phase == 1)
+        {
+            PlayAnimation(_bombAnim);
+        }
+        else if (_phase == 2)
+        {
+            PlayAnimation(_phase2AbilityAnim);
+        }
+
         GameObject.Instantiate(_bombAttackPrefab, GameLogicManager.Instance.EnemyAttackParent);
     }
 
     public void StartRayAttack()
     {
+        PlayAnimation(_phase2RayAnim);
+
         GameObject.Instantiate(_rayAttackPrefab, GameLogicManager.Instance.EnemyAttackParent);
     }
 
@@ -179,7 +228,6 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                
                 currentChoice = choices[UnityEngine.Random.Range(0, choices.Count)];
                 currentAttackOrder[1] = currentChoice;
                 choices.Remove(currentChoice);
@@ -224,7 +272,7 @@ public class Enemy : MonoBehaviour
 
             choices.AddRange(choicesArray);
 
-            if ((float)_currentHP / _maxHP < 0.5f && UnityEngine.Random.Range(0, 3) == 0)
+            if ((float)_currentHP / _maxHP < 0.5f)// && UnityEngine.Random.Range(0, 3) == 0)
             {
                 StartAttack(3);
             }
