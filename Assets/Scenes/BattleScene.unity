@@ -499,8 +499,8 @@ MonoBehaviour:
   _ui: {fileID: 618540433}
   _flashImage: {fileID: 51308503}
   _musicSource: {fileID: 1525138519}
-  _phaseOneMusic: {fileID: 8300000, guid: 60d424564a03d1d449e63587e974c85b, type: 3}
-  _phaseTwoMusic: {fileID: 8300000, guid: e6a7f8a329071514187e5ccb010218a2, type: 3}
+  _phaseOneMusic: {fileID: 8300000, guid: af0adc589d3ca554489e340c644af211, type: 3}
+  _phaseTwoMusic: {fileID: 8300000, guid: 421fa9630deb87a40978f711094845f4, type: 3}
   _introTalking:
   - CharacterTalking: 1
     TextToSay: Contente de me revoir, la cruche?
@@ -556,7 +556,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 87dd0ca4552a3bd41a460136702a548d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1a5f784928c3d6948866c180ec1109ec, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -773,11 +773,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!82 &1731157282 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1731157282, guid: b0a832ecff42846409919a76d9ddfa88, type: 3}
-  m_PrefabInstance: {fileID: 8816783072146010037}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1967594245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,17 +1393,13 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1525138517}
-    - target: {fileID: 1731157282, guid: b0a832ecff42846409919a76d9ddfa88, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: e28f31c1ab5b08c49ad383de76ee8832, type: 3}
     - target: {fileID: 5419634711699948560, guid: b0a832ecff42846409919a76d9ddfa88, type: 3}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5419634711699948560, guid: b0a832ecff42846409919a76d9ddfa88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 5419634711699948560, guid: b0a832ecff42846409919a76d9ddfa88, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1450,9 +1441,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7405503986112750782, guid: b0a832ecff42846409919a76d9ddfa88, type: 3}
-      propertyPath: _hurtSource
-      value: 
-      objectReference: {fileID: 1731157282}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a832ecff42846409919a76d9ddfa88, type: 3}

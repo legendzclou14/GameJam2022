@@ -102,8 +102,11 @@ public class PrologueControls : MonoBehaviour
 
     private void Move()
     {
-        _moveAmount = _moveInputValue * _movementMultiplier;
-        transform.Translate(_moveAmount);
+        if (!IsInteracting)
+        {
+            _moveAmount = _moveInputValue * _movementMultiplier;
+            transform.Translate(_moveAmount);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

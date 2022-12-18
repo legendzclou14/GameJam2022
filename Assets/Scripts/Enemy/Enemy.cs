@@ -16,15 +16,20 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _bombAttackPrefab;
     [SerializeField] private GameObject _rayAttackPrefab;
     [SerializeField] private SpriteRenderer _phase1Renderer;
+    [SerializeField] private SpriteRenderer _phase2Renderer;
     [SerializeField] private GameObject _phase2GO;
-    [SerializeField] private AudioSource _hurtSource;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _laughClip;
+    [SerializeField] private AudioClip _deathClip;
+    [SerializeField] private Color _hurtColor;
     public Transform RaySpawnPoint;
-    private int _idleAnim, _pillarAnim, _bulletAnim, _bombAnim, _deathAnim, _phase2AbilityAnim, _phase2RayAnim, _phase2IdleAnim;
+    private int _idleAnim, _pillarAnim, _bulletAnim, _bombAnim, _oofAnim, _deathAnim, _phase2AbilityAnim, _phase2RayAnim, _phase2IdleAnim;
     
     private int _maxHP = 0;
     private int _currentHP = 0;
     private int _phase = 1;
     private bool _canTakeDamage = false;
+    private Coroutine _hurtCoroutine = null;
 
     public Action<float> OnHealthChanged;
     public Action OnPhaseOneOver;
@@ -39,10 +44,24 @@ public class Enemy : MonoBehaviour
         _pillarAnim = Animator.StringToHash("Pillar");
         _bulletAnim = Animator.StringToHash("Bullet");
         _bombAnim = Animator.StringToHash("Bomb");
-        _deathAnim = Animator.StringToHash("Death");
+        _oofAnim = Animator.StringToHash("Death");
+        _deathAnim = Animator.StringToHash("Laugh");
         _phase2AbilityAnim = Animator.StringToHash("Ability");
         _phase2RayAnim = Animator.StringToHash("DeathRay");
         _phase2IdleAnim = Animator.StringToHash("IdlePhase2");
+    }
+
+    public void PlayOofAnim()
+    {
+        PlayAnimation(_oofAnim);
+    }
+
+    public void PlayLaughAnim()
+    {
+        PlayAnimation(_deathAnim);
+
+        _audioSource.clip = _laughClip;
+        _audioSource.Play();
     }
 
     public void PlayAnimation(int animationID)
@@ -94,11 +113,17 @@ public class Enemy : MonoBehaviour
             StopAllCoroutines();
             if (_phase == 1)
             {
-                PlayAnimation(_deathAnim);
+                _phase1Renderer.color = Color.white;
+                _phase2Renderer.color = Color.white;
+                PlayAnimation(_oofAnim);
                 OnPhaseOneOver.Invoke();
             }
             else
             {
+                _phase1Renderer.color = Color.white;
+                _phase2Renderer.color = Color.white;
+                PlayAnimation(_phase2IdleAnim);
+                PlayDeathClip();
                 OnPhaseTwoOver.Invoke();
                 _phase = 3;
             }
@@ -109,10 +134,30 @@ public class Enemy : MonoBehaviour
     {
         if (_canTakeDamage)
         {
-            _hurtSource.Play();
+            if (_hurtCoroutine != null)
+            {
+                StopCoroutine(_hurtCoroutine);
+            }
+            _hurtCoroutine = StartCoroutine(DamageVFX());
             _currentHP -= damageAmount;
             CheckHP();
         }
+    }
+
+    private void PlayDeathClip()
+    {
+        _audioSource.clip = _deathClip;
+        _audioSource.Play();
+    }
+
+    private IEnumerator DamageVFX()
+    {
+        _phase1Renderer.color = _hurtColor;
+        _phase2Renderer.color = _hurtColor;
+        yield return new WaitForSeconds(0.1f);
+        _phase1Renderer.color = Color.white;
+        _phase2Renderer.color = Color.white;
+        _hurtCoroutine = null;
     }
 
     public void StartZigZagAttack()

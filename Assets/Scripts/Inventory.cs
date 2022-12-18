@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     public float AtkBoostTime = 5;
     public float ShieldTime = 10;
     public int HealAmount = 25;
+    public Color AtkBoostColor = Color.white;
 
     private int _atkBoost = 0;
     private int _shields = 0;
@@ -19,7 +20,7 @@ public class Inventory : MonoBehaviour
     public int AtkBoost => _atkBoost;
     public int Shields => _shields;
     public int Heals => _heals;
-    private int[] _inventorySaveState = { 0, 0, 0 };  //Atk, shields, heals.
+    private int[] _inventorySaveState = { 1, 1, 1 };  //Atk, shields, heals.
 
     void Awake()
     {

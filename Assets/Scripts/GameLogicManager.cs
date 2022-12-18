@@ -56,6 +56,8 @@ public class GameLogicManager : MonoBehaviour
         }
         else
         {
+            _musicSource.Stop();
+            EnemyBoss.PlayOofAnim();
             StartCoroutine(StartOfSecondPhase());
         }
     }
@@ -129,7 +131,10 @@ public class GameLogicManager : MonoBehaviour
         else
         {
             _musicSource.Stop();
+            EnemyBoss.PlayOofAnim();
+            Player.BackToSpawn();
         }
+
 
         KillAllAttacks();
 
@@ -145,7 +150,7 @@ public class GameLogicManager : MonoBehaviour
             _canSkipDialogue = false;
             _skipDialogue = false;
         }
-
+        EnemyBoss.PlayLaughAnim();
         UI.TextBoxGO.SetActive(false);
         UI.ClearTextBox();
         yield return Flash(true, true, 3);
@@ -183,6 +188,7 @@ public class GameLogicManager : MonoBehaviour
 
     private IEnumerator StartFinaleTalking()
     {
+        Player.BackToSpawn();
         KillAllAttacks();
         Inventory.Instance.HasBeatenBoss = true;
 

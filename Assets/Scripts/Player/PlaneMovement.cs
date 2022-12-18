@@ -36,12 +36,12 @@ public class PlaneMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();       
+        Move();
     }
 
     public void ReadMoveInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !GameLogicManager.Instance.IsInDialogue)
         {
             _moveInputValue = context.ReadValue<Vector2>();
             ChangeSprite();

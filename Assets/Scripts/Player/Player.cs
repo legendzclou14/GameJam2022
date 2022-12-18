@@ -8,16 +8,26 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHP;
     [SerializeField] private AudioSource _hurtSource;
+    [SerializeField] private AudioSource _itemSource;
+    [SerializeField] private AudioClip _atkClip;
+    [SerializeField] private AudioClip _shieldClip;
+    [SerializeField] private AudioClip _healClip;
+    [SerializeField] private GameObject _shieldRenderer;
+    [SerializeField] private SpriteRenderer _playerRenderer;
+    [SerializeField] private Color _hurtColor;
     private int _currentHP = 0;
+    private Vector3 _spawnPos = Vector3.zero;
     private bool _canTakeDamage = false;
     public bool AtkBoostEnabled { get; private set; } = false;
 
     public Action<float> OnHealthChanged;
     public Action OnPlayerDeath;
+    private Coroutine _hurtCoroutine = null;
 
     private void Awake()
     {
         _currentHP = _maxHP;
+        _spawnPos = transform.position;
     }
 
     public void OnStartGame()
@@ -29,10 +39,22 @@ public class Player : MonoBehaviour
     {
         if (_canTakeDamage && !GameLogicManager.Instance.IsInDialogue)
         {
-            _hurtSource.Play();
+            if (_hurtCoroutine == null)
+            {
+                _hurtCoroutine = StartCoroutine(DamageVFX());
+            }
             _currentHP -= damageAmount;
             CheckHP();
         }
+    }
+
+    private IEnumerator DamageVFX()
+    {
+        _playerRenderer.color = _hurtColor;
+        yield return new WaitForSeconds(0.07f);
+        _hurtSource.Play();
+        _playerRenderer.color = Color.white;
+        _hurtCoroutine = null;
     }
 
     private void CheckHP()
@@ -51,11 +73,13 @@ public class Player : MonoBehaviour
 
     public void UseAtkBoost(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !GameLogicManager.Instance.IsInDialogue)
         {
             if (Inventory.Instance.CanUse(ItemType.ATK_BOOST) && AtkBoostEnabled == false)
             {
                 Debug.Log("atkboost");
+                _itemSource.clip = _atkClip;
+                _itemSource.Play();
                 StartCoroutine(StartAtkBoost(Inventory.Instance.AtkBoostTime));
             }
         }
@@ -63,11 +87,13 @@ public class Player : MonoBehaviour
 
     public void UseShield(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !GameLogicManager.Instance.IsInDialogue)
         {
             if (Inventory.Instance.CanUse(ItemType.SHIELD) && _canTakeDamage == true)
             {
                 Debug.Log("shield");
+                _itemSource.clip = _shieldClip;
+                _itemSource.Play();
                 StartCoroutine(SpawnShield(Inventory.Instance.ShieldTime));
             }
         }
@@ -75,11 +101,13 @@ public class Player : MonoBehaviour
 
     public void UseHeal(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !GameLogicManager.Instance.IsInDialogue)
         {
             if (_currentHP < _maxHP && Inventory.Instance.CanUse(ItemType.HEAL))
             {
                 Debug.Log("heal");
+                _itemSource.clip = _healClip;
+                _itemSource.Play();
                 _currentHP += Inventory.Instance.HealAmount;
                 CheckHP();
             }
@@ -88,16 +116,15 @@ public class Player : MonoBehaviour
 
     private IEnumerator SpawnShield(float time)
     {
-        //spawn shield or smth idk
+        _shieldRenderer.SetActive(true);
         _canTakeDamage = false;
         yield return new WaitForSeconds(time);
         _canTakeDamage = true;
-        //unspawn sheild
+        _shieldRenderer.SetActive(false);
     }
 
     private IEnumerator StartAtkBoost(float time)
     {
-        //vfx?
         AtkBoostEnabled = true;
         yield return new WaitForSeconds(time);
         AtkBoostEnabled = false;
@@ -108,4 +135,27 @@ public class Player : MonoBehaviour
         yield return null;
         //set animation, timer, etc
     }
+
+    public void BackToSpawn()
+    {
+        StartCoroutine(BackToSpawnPos());
+    }
+
+    private IEnumerator BackToSpawnPos()
+    {
+        Vector3 startpos = transform.position;
+        Vector3 currentPos = Vector3.zero;
+        float timer = 0;
+        float time = 0.5f;
+
+        while (timer < time)
+        {
+            currentPos = Vector3.Lerp(startpos, _spawnPos, timer / time);
+            transform.position = currentPos;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = _spawnPos;
+    }
+
 }

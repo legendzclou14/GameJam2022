@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903baf81bca39be4fb14c4cde69571f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _atkMultiplier: 2
-  _shieldTime: 10
-  _healAmount: 25
+  HasReachedCheckpoint: 0
+  HasBeatenBoss: 0
+  AtkBoostMultiplier: 2
+  AtkBoostTime: 5
+  ShieldTime: 10
+  HealAmount: 25
+  AtkBoostColor: {r: 1, g: 0.2688679, b: 0.32378286, a: 1}

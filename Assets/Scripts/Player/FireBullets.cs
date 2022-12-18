@@ -59,6 +59,7 @@ public class FireBullets : MonoBehaviour
         if (_linkedPlayer.AtkBoostEnabled)
         {
             bullet.GetComponent<DamagingObject>().DamageAmount *= Inventory.Instance.AtkBoostMultiplier;
+            bullet.GetComponent<SpriteRenderer>().color = Inventory.Instance.AtkBoostColor;
         }
     }
 }
