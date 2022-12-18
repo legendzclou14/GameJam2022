@@ -54,6 +54,7 @@ public class PrologueControls : MonoBehaviour
             }
             else if (PrologueManager.Instance.PrologueUI.InChoice)
             {
+                _moveInputValue = Vector2.zero;
                 Vector2 input = context.ReadValue<Vector2>();
                 if (input.x < -_spriteDeadzone)
                 {

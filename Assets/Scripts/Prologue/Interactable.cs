@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private void Awake()
+    private void Start()
     {
         _textBoxesToRead = _textBoxesBeforeBoss;
         if (Inventory.Instance.HasBeatenBoss)

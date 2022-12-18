@@ -26,10 +26,12 @@ public class Inventory : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            Debug.Log("New Inventory Instance");
         }
         else
         {
             Destroy(this.gameObject);
+            return;
         }
 
         DontDestroyOnLoad(this.gameObject);

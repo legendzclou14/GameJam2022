@@ -184,6 +184,7 @@ public class GameLogicManager : MonoBehaviour
     private IEnumerator StartFinaleTalking()
     {
         KillAllAttacks();
+        Inventory.Instance.HasBeatenBoss = true;
 
         IsInDialogue = true;
         _canSkipDialogue = false;
@@ -199,7 +200,7 @@ public class GameLogicManager : MonoBehaviour
         }
 
         yield return UI.TotalFadeOut(true, 2f);
-        //load out
+        SceneManager.LoadScene("PrologueScene");
     }
 
     private IEnumerator PlayerDeathSequence()
@@ -211,13 +212,6 @@ public class GameLogicManager : MonoBehaviour
         yield return Flash(true, false, 0.01f);
         UI.ShowUI(false);
         yield return Player.DeathCoroutine(); 
-        yield return UI.TotalFadeOut(true, 2f);
-        SceneManager.LoadScene("BattleScene");
-    }
-
-    private IEnumerator ReloadAfterGameOver()
-    {
-        Inventory.Instance.HasBeatenBoss = true;
         yield return UI.TotalFadeOut(true, 2f);
         SceneManager.LoadScene("BattleScene");
     }
