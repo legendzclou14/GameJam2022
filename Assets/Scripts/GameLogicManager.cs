@@ -198,7 +198,6 @@ public class GameLogicManager : MonoBehaviour
             _skipDialogue = false;
         }
 
-        UI.ShowUI(false);
         yield return UI.TotalFadeOut(true, 2f);
         //load out
     }
