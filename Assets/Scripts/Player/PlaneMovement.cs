@@ -19,6 +19,14 @@ public class PlaneMovement : MonoBehaviour
     private FireBullets _fireBullets = null;
     private Vector2 _moveInputValue = Vector2.zero;
     private Vector3 _moveAmount = Vector3.zero;
+    private Rect cameraRect;
+
+    void Start()
+    {
+        var bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
+        var topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
+        cameraRect = new Rect(bottomLeft.x, bottomLeft.y, topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
+    }
 
     private void Awake()
     {
@@ -76,5 +84,8 @@ public class PlaneMovement : MonoBehaviour
     {
         _moveAmount = _moveInputValue * _movementMultiplier;
         transform.Translate(_moveAmount);
-    }
+        transform.position = new Vector2(
+            Mathf.Clamp(transform.position.x, cameraRect.xMin, cameraRect.xMax),
+            Mathf.Clamp(transform.position.y, cameraRect.yMin, cameraRect.yMax));
+            }
 }

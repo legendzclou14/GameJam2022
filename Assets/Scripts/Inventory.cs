@@ -58,13 +58,14 @@ public class Inventory : MonoBehaviour
 
     public bool CanUse(ItemType type)
     {
+        bool canUseIt = false;
         switch(type)
         {
             case ItemType.ATK_BOOST:
                 if (_atkBoost > 0)
                 {
                     _atkBoost--;
-                    return true;
+                    canUseIt = true;
                 }
                 break;
 
@@ -72,7 +73,7 @@ public class Inventory : MonoBehaviour
                 if (_shields > 0)
                 {
                     _shields--;
-                    return true;
+                    canUseIt = true;
                 }
                 break;
 
@@ -80,15 +81,20 @@ public class Inventory : MonoBehaviour
                 if (_heals > 0)
                 {
                     _heals--;
-                    return true;
+                    canUseIt = true;
                 }
                 break;
 
-            default:    
-                return false;
+            default:
+                break;
         }
 
-        return false;
+        if (canUseIt)
+        {
+            GameLogicManager.Instance.UI.UseItem(type);
+        }
+
+        return canUseIt;
     }
 
     public void RestoreInventory()

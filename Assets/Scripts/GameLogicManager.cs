@@ -118,9 +118,9 @@ public class GameLogicManager : MonoBehaviour
 
         UI.TextBoxGO.SetActive(false);
         UI.ClearTextBox();
-        yield return Flash(true);
+        yield return Flash(true, true, 3);
         //second phase spawn?
-        yield return Flash(false);
+        yield return Flash(false, true, 2);
         UI.TextBoxGO.SetActive(true);
 
         foreach (TalkingCharacter textBox in _betweenPhasesTalkingPt2)
@@ -134,8 +134,8 @@ public class GameLogicManager : MonoBehaviour
 
         UI.TextBoxGO.SetActive(false);
         yield return UI.FillEnemyBar();
-        EnemyBoss.StartSecondPhase();
         IsInDialogue = false;
+        EnemyBoss.StartSecondPhase();
     }
 
     private IEnumerator StartFinaleTalking()

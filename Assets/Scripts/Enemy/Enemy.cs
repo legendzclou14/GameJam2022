@@ -227,7 +227,6 @@ public class Enemy : MonoBehaviour
             if ((float)_currentHP / _maxHP < 0.5f && UnityEngine.Random.Range(0, 3) == 0)
             {
                 StartAttack(3);
-                Debug.Log("DEATHRAY");
             }
             else
             {
@@ -235,7 +234,6 @@ public class Enemy : MonoBehaviour
                 {
                     StartAttack(attackIndex);
                 }
-                Debug.Log($"{chosenAttacks[0]}, {chosenAttacks[1]}");
             }
 
             chosenAttacks.Clear();
