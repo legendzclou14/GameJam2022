@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     public void Damage(int damageAmount)
     {
-        if (_canTakeDamage)
+        if (_canTakeDamage && !GameLogicManager.Instance.IsInDialogue)
         {
             _currentHP -= damageAmount;
             CheckHP();

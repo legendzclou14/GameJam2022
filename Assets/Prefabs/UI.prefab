@@ -847,6 +847,10 @@ MonoBehaviour:
   _atkItem: {fileID: 1293680033588280061}
   _shieldItem: {fileID: 2157639578142755525}
   _healItem: {fileID: 7741404399445236541}
+  _UItoHide:
+  - {fileID: 5880231718190889396}
+  - {fileID: 5880231717490672330}
+  - {fileID: 8508182154762164060}
 --- !u!82 &7075892270305691426
 AudioSource:
   m_ObjectHideFlags: 0

@@ -103,6 +103,7 @@ MonoBehaviour:
   _damageDelay: 0
   _lifetime: 2
   _destroyOnHit: 1
+  _destroyParent: 0
   DamageAmount: 1
 --- !u!50 &296727018919000239
 Rigidbody2D:

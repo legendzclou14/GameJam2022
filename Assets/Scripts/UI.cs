@@ -17,6 +17,7 @@ public class UI : MonoBehaviour
     [SerializeField] private Image _atkItem;
     [SerializeField] private Image _shieldItem;
     [SerializeField] private Image _healItem;
+    [SerializeField] private GameObject[] _UItoHide;
 
     private void OnDestroy()
     {
@@ -33,6 +34,14 @@ public class UI : MonoBehaviour
     private void UpdateEnemyHP(float hp)
     {
         _enemyHPSlider.value = hp;
+    }
+
+    public void ShowUI(bool show)
+    {
+        foreach(GameObject uiElement in _UItoHide)
+        {
+            uiElement.SetActive(show);
+        }
     }
 
     public void UseItem(ItemType type)

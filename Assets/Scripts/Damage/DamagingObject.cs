@@ -10,6 +10,7 @@ public class DamagingObject : MonoBehaviour
     [SerializeField] private float _damageDelay = 0;
     [SerializeField] private float _lifetime = 2f;
     [SerializeField] private bool _destroyOnHit = true;
+    [SerializeField] private bool _destroyParent = false;
     public int DamageAmount = 1;
 
     private bool _damageTarget = false;
@@ -21,10 +22,12 @@ public class DamagingObject : MonoBehaviour
     {
         float movement = _movementDirection == Direction.LEFT ? -1 * _speed : 1 * _speed;
         _updateMovement = new Vector3(movement, 0, 0);
-        
+
         if (_lifetime > 0)
         {
-            Destroy(gameObject, _lifetime);
+            GameObject toDestroy = _destroyParent ? transform.parent.gameObject : gameObject;
+            Debug.Log($"{gameObject.name} will destroy {toDestroy.name}");
+            Destroy(toDestroy, _lifetime);
         }
 
         if (gameObject.CompareTag("DamagePlayer"))

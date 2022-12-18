@@ -155,6 +155,7 @@ public class GameLogicManager : MonoBehaviour
             _skipDialogue = false;
         }
 
+        UI.ShowUI(false);
         yield return Flash(true, false, 2f);
         //load out
     }
@@ -165,6 +166,7 @@ public class GameLogicManager : MonoBehaviour
         IsInDialogue = true;
 
         yield return Flash(true, false, 0.01f);
+        UI.ShowUI(false);
         yield return Player.DeathCoroutine();
     }
 
