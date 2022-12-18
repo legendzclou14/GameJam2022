@@ -99,7 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moving: 1
   _movementDirection: 1
-  _speed: 0.1
+  _speed: 0.15
+  _damageDelay: 0
   _lifetime: 2
   _destroyOnHit: 1
   DamageAmount: 1

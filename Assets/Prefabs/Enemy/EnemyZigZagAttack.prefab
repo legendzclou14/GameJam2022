@@ -95,8 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80a40d5ce5e1cb4e9c52121e790bc62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delayBeforeFiring: 1
   _shotsPerSecond: 4
   _attackTime: 10
   _maxHeight: 4
-  _verticallSpeed: 0.05
+  _verticallSpeed: 0.1
   _bulletPrefab: {fileID: 3731021275330437114, guid: cc89829290307fe45aaaa8676173af65, type: 3}

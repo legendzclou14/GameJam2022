@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a69cecdf186d964da6590f290241c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayBetweenBombs: 2
-  _numberOfBombs: 5
+  _delayBetweenBombs: 1.25
+  _numberOfBombs: 7
   _bombPrefab: {fileID: 2559816893829540738, guid: 300d2b88eba296944bdd5b5d96b0753e, type: 3}

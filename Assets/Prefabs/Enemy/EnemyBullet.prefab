@@ -99,10 +99,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moving: 1
   _movementDirection: 0
-  _speed: 0.1
+  _speed: 0.25
+  _damageDelay: 0
   _lifetime: 4
   _destroyOnHit: 1
-  DamageAmount: 1
+  DamageAmount: 10
 --- !u!50 &296727018919000239
 Rigidbody2D:
   serializedVersion: 4

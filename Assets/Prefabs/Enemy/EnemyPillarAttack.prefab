@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pillarPrefab: {fileID: 3449841771327943065, guid: 96b97499f6c78664a8cfd5326853398f, type: 3}
   _simultaneousPillars: 2
-  _numberOfRounds: 3
-  _timeBetweenRounds: 3
+  _numberOfRounds: 6
+  _timeBetweenRounds: 1.75
