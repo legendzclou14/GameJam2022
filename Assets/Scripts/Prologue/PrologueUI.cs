@@ -10,10 +10,13 @@ public class PrologueUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI _textBoxText = null;
     [SerializeField] private AudioSource _voiceSource;
     [SerializeField] private Image _flashImage;
+    [SerializeField] private GameObject _choiceButtonsPrefab;
+    [SerializeField] private Transform _choiceButtonsParent;
+    private List<ChoiceButton> _choiceButtons = new List<ChoiceButton>();
 
     private void Awake()
     {
-        gameObject.SetActive(false);
+        TextBoxGO.SetActive(false);
     }
 
     private void OnDestroy()
@@ -40,10 +43,7 @@ public class PrologueUI : MonoBehaviour
 
     public IEnumerator FillTextBox(string textBoxContent)
     {
-        if (!gameObject.activeSelf)
-        {
-            gameObject.SetActive(true);
-        }
+        TextBoxGO.SetActive(true);
 
         _textBoxText.text = string.Empty;
         _voiceSource.Play();
@@ -59,6 +59,77 @@ public class PrologueUI : MonoBehaviour
     public void ClearTextBox()
     {
         _textBoxText.text = string.Empty;
-        gameObject.SetActive(false);
+        TextBoxGO.SetActive(false);
+    }
+
+    private IEnumerator ChoiceDelay()
+    {
+        _canChangeChoice = false;
+        yield return new WaitForSeconds(0.25f);
+        _canChangeChoice = true;
+    }
+
+    int _currentButtonIndex = 0;
+    public bool InChoice = false;
+    private bool _canChangeChoice = true;
+
+    public void ShowChoiceButtons(string[] buttonLabels)
+    {
+        InChoice = true;
+        foreach (string label in buttonLabels)
+        {
+            ChoiceButton button = GameObject.Instantiate(_choiceButtonsPrefab, _choiceButtonsParent).GetComponent<ChoiceButton>();
+            button.Init(label);
+            _choiceButtons.Add(button);
+        }
+
+        _currentButtonIndex = 0;
+        UpdateChoice();
+    }
+
+    public void LeftChoice()
+    {
+        if(InChoice && _canChangeChoice)
+        {
+            StartCoroutine(ChoiceDelay());
+            _choiceButtons[_currentButtonIndex].Highlight(false);
+            _currentButtonIndex--;
+            UpdateChoice();
+        }
+    }
+    
+    public void RightChoice()
+    {
+        if (InChoice && _canChangeChoice)
+        {
+            StartCoroutine(ChoiceDelay());
+            _choiceButtons[_currentButtonIndex].Highlight(false);
+            _currentButtonIndex++;
+            UpdateChoice();
+        }
+    }
+
+    public void UpdateChoice()
+    {
+        if(_currentButtonIndex >= _choiceButtons.Count)
+        {
+            _currentButtonIndex = 0;
+        }
+        else if (_currentButtonIndex < 0)
+        {
+            _currentButtonIndex = _choiceButtons.Count - 1;
+        }
+        _choiceButtons[_currentButtonIndex].Highlight(true);
+    }
+
+    public int SelectButton()
+    {
+        foreach(var button in _choiceButtons)
+        {
+            Destroy(button.gameObject);
+        }
+        _choiceButtons.Clear();
+        InChoice = false;
+        return _currentButtonIndex;
     }
 }

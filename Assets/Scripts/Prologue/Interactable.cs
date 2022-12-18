@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private string[] _textBoxes;
+    [SerializeField] private string[] _textBoxesBeforeBoss;
+    [SerializeField] private bool _differentTextsAfterBoss = false;
+    [SerializeField] private string[] _textBoxesAfterBoss;
+    private string[] _textBoxesToRead;
     [SerializeField] private bool _giveItem = false;
     [SerializeField] private ItemType _itemToGive = ItemType.ATK_BOOST;
-    private bool _canSkipDialogue = false;
-    private bool _skipDialogue = false;
+    protected bool _canSkipDialogue = false;
+    protected bool _skipDialogue = false;
     private bool _hasGivenItem = false;
 
     private void OnDestroy()
@@ -16,12 +19,25 @@ public class Interactable : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void Interact()
+    private void Awake()
+    {
+        _textBoxesToRead = _textBoxesBeforeBoss;
+        if (Inventory.Instance.HasBeatenBoss)
+        {
+            _hasGivenItem = true;
+            if (_differentTextsAfterBoss)
+            {
+                _textBoxesToRead = _textBoxesAfterBoss;
+            }
+        }
+    }
+
+    public virtual void Interact()
     {
         StartCoroutine(DisplayText());
     }
 
-    public void NextDialogue()
+    public virtual void NextDialogue()
     {
         if (_canSkipDialogue)
         {
@@ -29,12 +45,12 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    private IEnumerator DisplayText()
+    protected IEnumerator DisplayText()
     {
         PrologueControls.IsInteracting = true;
         _canSkipDialogue = false;
 
-        foreach (string textBox in _textBoxes)
+        foreach (string textBox in _textBoxesToRead)
         {
             yield return PrologueManager.Instance.PrologueUI.FillTextBox(textBox);
             _canSkipDialogue = true;

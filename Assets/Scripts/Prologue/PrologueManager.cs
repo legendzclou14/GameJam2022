@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PrologueManager : MonoBehaviour
 {
@@ -17,6 +18,25 @@ public class PrologueManager : MonoBehaviour
         else 
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    public void EndPrologue()
+    {
+        StartCoroutine(EndPrologueCoroutine());
+    }
+
+    private IEnumerator EndPrologueCoroutine()
+    {
+        yield return PrologueUI.TotalFadeOut(true, 2);
+        
+        if (!Inventory.Instance.HasBeatenBoss)
+        {
+            SceneManager.LoadScene("BattleScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

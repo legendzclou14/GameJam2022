@@ -217,6 +217,7 @@ public class GameLogicManager : MonoBehaviour
 
     private IEnumerator ReloadAfterGameOver()
     {
+        Inventory.Instance.HasBeatenBoss = true;
         yield return UI.TotalFadeOut(true, 2f);
         SceneManager.LoadScene("BattleScene");
     }
@@ -237,11 +238,6 @@ public class GameLogicManager : MonoBehaviour
             yield return null;
         }
         _flashImage.color = new Color(flashColor, flashColor, flashColor, alphaTarget);
-    }
-
-    public void GameOver(bool win)
-    {
-        Debug.Log($"Gameover! Win: {win}");
     }
 }
 

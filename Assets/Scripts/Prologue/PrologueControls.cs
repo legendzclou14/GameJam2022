@@ -42,12 +42,28 @@ public class PrologueControls : MonoBehaviour
         }
     }
 
+
     public void ReadMoveInput(InputAction.CallbackContext context)
     {
-        if (context.performed && !IsInteracting)
+        if (context.performed)
         {
-            _moveInputValue = context.ReadValue<Vector2>();
-            ChangeSprite();
+            if(!IsInteracting)
+            {
+                ChangeSprite();
+                _moveInputValue = context.ReadValue<Vector2>();
+            }
+            else if (PrologueManager.Instance.PrologueUI.InChoice)
+            {
+                Vector2 input = context.ReadValue<Vector2>();
+                if (input.x < -_spriteDeadzone)
+                {
+                    PrologueManager.Instance.PrologueUI.LeftChoice();
+                }
+                else if (input.x > _spriteDeadzone)
+                {
+                    PrologueManager.Instance.PrologueUI.RightChoice();
+                }
+            }
         }
         else
         {

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5208047032998138894
+--- !u!1 &4060522632241236477
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5208047032998138895}
-  - component: {fileID: 5208047032998138889}
-  - component: {fileID: 5208047032998138888}
-  - component: {fileID: 5208047032998138890}
+  - component: {fileID: 4060522632241236476}
+  - component: {fileID: 4060522632241236474}
+  - component: {fileID: 4060522632241236475}
+  - component: {fileID: 631093644197545489}
+  - component: {fileID: 4589706763812300227}
   m_Layer: 0
   m_Name: InteractZone
   m_TagString: Interactable
@@ -19,27 +20,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5208047032998138895
+--- !u!4 &4060522632241236476
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208047032998138894}
+  m_GameObject: {fileID: 4060522632241236477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5208047033020865868}
+  m_Father: {fileID: 4060522633009135807}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5208047032998138889
+--- !u!61 &4060522632241236474
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208047032998138894}
+  m_GameObject: {fileID: 4060522632241236477}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -59,14 +60,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
---- !u!50 &5208047032998138888
+--- !u!50 &4060522632241236475
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208047032998138894}
+  m_GameObject: {fileID: 4060522632241236477}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -80,25 +81,135 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &5208047032998138890
+--- !u!114 &631093644197545489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208047032998138894}
+  m_GameObject: {fileID: 4060522632241236477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0790fff63466cd448ff3e3a64f908d7, type: 3}
+  m_Script: {fileID: 11500000, guid: e077d6be337275441a8a007f29cf6a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _textBoxesBeforeBoss:
-  - square
+  - turntable
   _differentTextsAfterBoss: 0
-  _textBoxesAfterBoss: []
-  _giveItem: 1
+  _textBoxesAfterBoss:
+  - turntable, but after boss
+  _giveItem: 0
   _itemToGive: 0
---- !u!1 &5208047033020865856
+  _choiceAfterBoss: 1
+  _choiceText: Which vynil will you play
+  _choices:
+  - 1
+  - 2
+  - 3
+  - 4
+  _source: {fileID: 4589706763812300227}
+  _songs:
+  - {fileID: 8300000, guid: e6a7f8a329071514187e5ccb010218a2, type: 3}
+  - {fileID: 8300000, guid: 60d424564a03d1d449e63587e974c85b, type: 3}
+  - {fileID: 8300000, guid: a1ce173169858d2418611c74a5232517, type: 3}
+  - {fileID: 8300000, guid: d39388557770b4a4db34bda1fb41a0cc, type: 3}
+--- !u!82 &4589706763812300227
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4060522632241236477}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e6a7f8a329071514187e5ccb010218a2, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &4060522633009135795
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,39 +217,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5208047033020865868}
-  - component: {fileID: 5208047033020865859}
-  - component: {fileID: 5208047033020865858}
-  - component: {fileID: 5208047033020865857}
+  - component: {fileID: 4060522633009135807}
+  - component: {fileID: 4060522633009135792}
+  - component: {fileID: 4060522633009135793}
+  - component: {fileID: 4060522633009135794}
   m_Layer: 0
-  m_Name: Interactable
+  m_Name: TurntableInteractable
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5208047033020865868
+--- !u!4 &4060522633009135807
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208047033020865856}
+  m_GameObject: {fileID: 4060522633009135795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.4, y: -10.92, z: 0}
+  m_LocalPosition: {x: 18.4, y: -8.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5208047032998138895}
+  - {fileID: 4060522632241236476}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5208047033020865859
+--- !u!212 &4060522633009135792
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208047033020865856}
+  m_GameObject: {fileID: 4060522633009135795}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -183,13 +294,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5208047033020865858
+--- !u!61 &4060522633009135793
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208047033020865856}
+  m_GameObject: {fileID: 4060522633009135795}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -209,14 +320,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &5208047033020865857
+--- !u!50 &4060522633009135794
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208047033020865856}
+  m_GameObject: {fileID: 4060522633009135795}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
