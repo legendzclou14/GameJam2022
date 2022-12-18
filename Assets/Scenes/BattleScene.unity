@@ -394,6 +394,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117649319 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9147023830874160861, guid: 3e0fdaea849f8b84c807691db358bb9a, type: 3}
+  m_PrefabInstance: {fileID: 1312456030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466b91167c45a61428b45d58850ee055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1312456030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -487,7 +498,7 @@ MonoBehaviour:
   _bulletsParent: {fileID: 2026985519}
   _enemyAttackParent: {fileID: 1561498531}
   _player: {fileID: 596731303}
-  _enemyBoss: {fileID: 0}
+  _enemyBoss: {fileID: 1117649319}
   _ui: {fileID: 618540433}
   _flashImage: {fileID: 51308503}
   _introTalking:
@@ -825,30 +836,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1624967108}
     m_Modifications:
-    - target: {fileID: 901356479966203958, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 905991022837067624, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1785
-      objectReference: {fileID: 0}
-    - target: {fileID: 905991022837067624, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1785
-      objectReference: {fileID: 0}
-    - target: {fileID: 3389191689032751452, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1785
-      objectReference: {fileID: 0}
-    - target: {fileID: 3389191689032751452, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 3570
-      objectReference: {fileID: 0}
-    - target: {fileID: 3393509718298486274, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3736300835824219772, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -937,13 +924,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: FightBackground
       objectReference: {fileID: 0}
-    - target: {fileID: 8549239049482534754, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8553469732283039804, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
+    - target: {fileID: 5465169364427918476, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
+      propertyPath: _speed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dd00cdef22cdff44b6999b4f68db947, type: 3}
