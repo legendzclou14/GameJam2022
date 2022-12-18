@@ -21,6 +21,11 @@ public class GameLogicManager : MonoBehaviour
     public UI UI { get { return _ui; } }
 
     [SerializeField] SpriteRenderer _flashImage = null;
+
+    [SerializeField] private AudioSource _musicSource;
+    [SerializeField] private AudioClip _phaseOneMusic;
+    [SerializeField] private AudioClip _phaseTwoMusic;
+
     public bool IsInDialogue { get; private set; } = false;
     private bool _canSkipDialogue = false;
     private bool _skipDialogue = false;
@@ -89,6 +94,9 @@ public class GameLogicManager : MonoBehaviour
             _skipDialogue = false;
         }
 
+        _musicSource.clip = _phaseOneMusic;
+        _musicSource.Play();
+
         UI.TextBoxGO.SetActive(false);
         yield return UI.StartOfGame();
         IsInDialogue = false;
@@ -118,6 +126,11 @@ public class GameLogicManager : MonoBehaviour
             Inventory.Instance.RestoreInventory();
             yield return UI.TotalFadeOut(false, 2f);
         }
+        else
+        {
+            _musicSource.Stop();
+        }
+
         KillAllAttacks();
 
         IsInDialogue = true;
@@ -150,6 +163,9 @@ public class GameLogicManager : MonoBehaviour
         }
 
         UI.TextBoxGO.SetActive(false);
+        _musicSource.clip = _phaseTwoMusic;
+        _musicSource.Play();
+
         if (Inventory.Instance.HasReachedCheckpoint)
         {
             yield return UI.StartOfGame();
@@ -161,6 +177,7 @@ public class GameLogicManager : MonoBehaviour
         }
         IsInDialogue = false;
         EnemyBoss.StartSecondPhase();
+
         Inventory.Instance.HasReachedCheckpoint = true;
     }
 
@@ -188,6 +205,7 @@ public class GameLogicManager : MonoBehaviour
 
     private IEnumerator PlayerDeathSequence()
     {
+        _musicSource.Stop();
         KillAllAttacks();
         IsInDialogue = true;
 

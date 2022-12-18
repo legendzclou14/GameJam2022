@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHP;
+    [SerializeField] private AudioSource _hurtSource;
     private int _currentHP = 0;
     private bool _canTakeDamage = false;
     public bool AtkBoostEnabled { get; private set; } = false;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     {
         if (_canTakeDamage && !GameLogicManager.Instance.IsInDialogue)
         {
+            _hurtSource.Play();
             _currentHP -= damageAmount;
             CheckHP();
         }

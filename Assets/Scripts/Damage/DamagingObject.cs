@@ -26,7 +26,6 @@ public class DamagingObject : MonoBehaviour
         if (_lifetime > 0)
         {
             GameObject toDestroy = _destroyParent ? transform.parent.gameObject : gameObject;
-            Debug.Log($"{gameObject.name} will destroy {toDestroy.name}");
             Destroy(toDestroy, _lifetime);
         }
 

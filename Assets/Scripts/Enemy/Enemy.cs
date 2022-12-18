@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _rayAttackPrefab;
     [SerializeField] private SpriteRenderer _phase1Renderer;
     [SerializeField] private GameObject _phase2GO;
+    [SerializeField] private AudioSource _hurtSource;
     public Transform RaySpawnPoint;
     private int _idleAnim, _pillarAnim, _bulletAnim, _bombAnim, _deathAnim, _phase2AbilityAnim, _phase2RayAnim, _phase2IdleAnim;
     
@@ -108,6 +109,7 @@ public class Enemy : MonoBehaviour
     {
         if (_canTakeDamage)
         {
+            _hurtSource.Play();
             _currentHP -= damageAmount;
             CheckHP();
         }
@@ -272,7 +274,7 @@ public class Enemy : MonoBehaviour
 
             choices.AddRange(choicesArray);
 
-            if ((float)_currentHP / _maxHP < 0.5f)// && UnityEngine.Random.Range(0, 3) == 0)
+            if ((float)_currentHP / _maxHP < 0.5f && UnityEngine.Random.Range(0, 3) == 0)
             {
                 StartAttack(3);
             }

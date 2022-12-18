@@ -9,6 +9,7 @@ public class FireBullets : MonoBehaviour
 {
     [SerializeField] private int _shotsPerSecond = 1;
     [SerializeField] protected GameObject _bulletPrefab = null;
+    [SerializeField] private AudioSource _audioSource;
     private Coroutine _firingCoroutine = null;
     private bool _firing = false;
     public bool Firing { get { return _firing; } }
@@ -54,6 +55,7 @@ public class FireBullets : MonoBehaviour
     private void InstantiateBullet()
     {
         GameObject bullet = GameObject.Instantiate(_bulletPrefab, transform.position, transform.rotation, GameLogicManager.Instance.BulletParent);
+        _audioSource.Play();
         if (_linkedPlayer.AtkBoostEnabled)
         {
             bullet.GetComponent<DamagingObject>().DamageAmount *= Inventory.Instance.AtkBoostMultiplier;
