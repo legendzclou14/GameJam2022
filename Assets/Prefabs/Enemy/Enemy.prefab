@@ -75,15 +75,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-<<<<<<< Updated upstream
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0, g: 0.06205868, b: 0.8773585, a: 1}
-=======
-  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 842b4b206fdf0ce4bbb3bf94c52e2439, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
->>>>>>> Stashed changes
+  m_Color: {r: 0, g: 0.06205868, b: 0.8773585, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,11 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHPFirstPhase: 200
   _maxHPSecondPhase: 200
-<<<<<<< Updated upstream
   _timeBetweenAttacksPhaseOne: 15
   _timeBetweenAttacksPhaseTwo: 15
-=======
->>>>>>> Stashed changes
   _zigZagAttackPrefab: {fileID: 6548896863618719018, guid: eb6a52e7dd144f542ae77e660c5765af, type: 3}
   _pillarAttackPrefab: {fileID: 1778683452560475130, guid: 8fef34d4aece3d64c945b151d0d3813c, type: 3}
   _bombAttackPrefab: {fileID: 2035768046561911088, guid: d71c2a5b7a74e4240895d1f95b310529, type: 3}
