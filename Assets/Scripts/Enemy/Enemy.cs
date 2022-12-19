@@ -50,15 +50,17 @@ public class Enemy : MonoBehaviour
         _phase2RayAnim = Animator.StringToHash("DeathRay");
         _phase2IdleAnim = Animator.StringToHash("IdlePhase2");
     }
-
-    public void PlayIdleAnim()
-    {
-        PlayAnimation(_idleAnim);
-    }
     
-    public void PlayPointAnim()
+    public void PlayStartOfGameAnim()
+    {
+        StartCoroutine(StartAnim());
+    }
+
+    private IEnumerator StartAnim()
     {
         PlayAnimation(_bulletAnim);
+        yield return new WaitForSeconds(1.5f);
+        PlayAnimation(_idleAnim);
     }
 
     public void PlayOofAnim()

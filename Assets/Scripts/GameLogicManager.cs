@@ -101,7 +101,7 @@ public class GameLogicManager : MonoBehaviour
         UI.TextBoxGO.SetActive(false);
         _musicSource.Play();
 
-        _enemyBoss.PlayPointAnim();
+        _enemyBoss.PlayStartOfGameAnim();
         yield return UI.StartOfGame();
 
         IsInDialogue = false;

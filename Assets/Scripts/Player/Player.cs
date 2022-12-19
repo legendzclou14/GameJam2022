@@ -77,7 +77,6 @@ public class Player : MonoBehaviour
         {
             if (Inventory.Instance.CanUse(ItemType.ATK_BOOST) && AtkBoostEnabled == false)
             {
-                Debug.Log("atkboost");
                 _itemSource.clip = _atkClip;
                 _itemSource.Play();
                 StartCoroutine(StartAtkBoost(Inventory.Instance.AtkBoostTime));
@@ -91,7 +90,6 @@ public class Player : MonoBehaviour
         {
             if (Inventory.Instance.CanUse(ItemType.SHIELD) && _canTakeDamage == true)
             {
-                Debug.Log("shield");
                 _itemSource.clip = _shieldClip;
                 _itemSource.Play();
                 StartCoroutine(SpawnShield(Inventory.Instance.ShieldTime));
@@ -105,7 +103,6 @@ public class Player : MonoBehaviour
         {
             if (_currentHP < _maxHP && Inventory.Instance.CanUse(ItemType.HEAL))
             {
-                Debug.Log("heal");
                 _itemSource.clip = _healClip;
                 _itemSource.Play();
                 _currentHP += Inventory.Instance.HealAmount;

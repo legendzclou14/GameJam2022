@@ -14,20 +14,24 @@ public class Inventory : MonoBehaviour
     public int HealAmount = 25;
     public Color AtkBoostColor = Color.white;
 
+    [SerializeField] private string _atkBoostItemName = "Attack Boost";
+    [SerializeField] private string _shieldItemName = "Shield";
+    [SerializeField] private string _healItemName = "Heal";
+    [SerializeField] private string _addToinventoryString = "a été ajouté à l'inventaire!";
+
     private int _atkBoost = 0;
     private int _shields = 0;
     private int _heals = 0;
     public int AtkBoost => _atkBoost;
     public int Shields => _shields;
     public int Heals => _heals;
-    private int[] _inventorySaveState = { 1, 1, 1 };  //Atk, shields, heals.
+    private int[] _inventorySaveState = { 0, 0, 0 };  //Atk, shields, heals.
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            Debug.Log("New Inventory Instance");
         }
         else
         {
@@ -45,17 +49,17 @@ public class Inventory : MonoBehaviour
         {
             case ItemType.ATK_BOOST:
                 _atkBoost++;
-                itemName = "Attack Boost";
+                itemName = _atkBoostItemName;
                 break;
 
             case ItemType.SHIELD:
                 _shields++;
-                itemName = "Shield";
+                itemName = _shieldItemName;
                 break;
 
             case ItemType.HEAL:
                 _heals++;
-                itemName = "Heal";
+                itemName = _healItemName;
                 break;
 
             default:
@@ -63,7 +67,7 @@ public class Inventory : MonoBehaviour
         }
 
         _inventorySaveState = new int[] { _atkBoost,  _shields, _heals};
-        return $"{itemName} has been added to inventory!";
+        return $"{itemName} {_addToinventoryString}";
     }
 
     public bool CanUse(ItemType type)
