@@ -484,7 +484,7 @@ MonoBehaviour:
     do Pog AND Prog
   _differentTextsAfterBoss: 0
   _textBoxesAfterBoss: []
-  _giveItem: 1
+  _giveItem: 0
   _itemToGive: 0
 --- !u!50 &69734898
 Rigidbody2D:
