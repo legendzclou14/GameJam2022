@@ -17,7 +17,7 @@ public class PrologueControls : MonoBehaviour
     [SerializeField] private Sprite _rightSprite = null;
     [SerializeField] private float _spriteDeadzone = 0.5f;
     [SerializeField] private Animator _animator = null;
-    private int _leftAnim, _rightAnim, _upAnim, _downAnim;
+    private int _leftAnim, _rightAnim, _upAnim, _downAnim, _noAnim;
     private int _lastAnimUsed;
 
     private Vector2 _moveInputValue = Vector2.zero;
@@ -35,14 +35,17 @@ public class PrologueControls : MonoBehaviour
         _rightAnim = Animator.StringToHash("Right");
         _upAnim = Animator.StringToHash("Up");
         _downAnim = Animator.StringToHash("Down");
-        _lastAnimUsed = _downAnim;
+        _noAnim = Animator.StringToHash("Idle");
+        _lastAnimUsed = _noAnim;
     }
 
     public void PlayAnimation(int animID)
     {
-        _lastAnimUsed = animID;
-        if (_animator != null)
+        if (_animator != null && _animator.enabled && _lastAnimUsed != animID)
         {
+            _animator.enabled = false;
+            _lastAnimUsed = animID;
+            _animator.enabled = true;
             _animator.SetTrigger(animID);
         }
     }
@@ -70,8 +73,8 @@ public class PrologueControls : MonoBehaviour
         {
             if(!IsInteracting)
             {
-                ChangeSprite();
                 _moveInputValue = context.ReadValue<Vector2>();
+                ChangeSprite();
             }
             else if (PrologueManager.Instance.PrologueUI.InChoice)
             {
@@ -116,7 +119,8 @@ public class PrologueControls : MonoBehaviour
             }
             else
             {
-                _animator.StopPlayback();
+                _animator.Play(_noAnim);
+
                 if (_lastAnimUsed == _leftAnim)
                 {
                     _spriteRenderer.sprite = _leftSprite; 
