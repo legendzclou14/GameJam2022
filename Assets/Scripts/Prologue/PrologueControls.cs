@@ -15,8 +15,11 @@ public class PrologueControls : MonoBehaviour
     [SerializeField] private Sprite _downSprite = null;
     [SerializeField] private Sprite _leftSprite = null;
     [SerializeField] private Sprite _rightSprite = null;
-    [SerializeField] private Sprite _idleSprite = null;
     [SerializeField] private float _spriteDeadzone = 0.5f;
+    [SerializeField] private Animator _animator = null;
+    private int _leftAnim, _rightAnim, _upAnim, _downAnim;
+    private int _lastAnimUsed;
+
     private Vector2 _moveInputValue = Vector2.zero;
     private Vector3 _moveAmount = Vector3.zero;
     private Interactable _currentInteractable = null;
@@ -24,6 +27,24 @@ public class PrologueControls : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+    }
+
+    private void Start()
+    {
+        _leftAnim = Animator.StringToHash("Left");
+        _rightAnim = Animator.StringToHash("Right");
+        _upAnim = Animator.StringToHash("Up");
+        _downAnim = Animator.StringToHash("Down");
+        _lastAnimUsed = _downAnim;
+    }
+
+    public void PlayAnimation(int animID)
+    {
+        _lastAnimUsed = animID;
+        if (_animator != null)
+        {
+            _animator.SetTrigger(animID);
+        }
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -77,25 +98,41 @@ public class PrologueControls : MonoBehaviour
     {
         if (_moveInputValue.y > _spriteDeadzone)
         {
-            _spriteRenderer.sprite = _upSprite;
+            PlayAnimation(_upAnim);
         }
         else if (_moveInputValue.y < -_spriteDeadzone)
         {
-            _spriteRenderer.sprite = _downSprite;
+            PlayAnimation(_downAnim);
         }
         else
         {
             if (_moveInputValue.x > _spriteDeadzone)
             {
-                _spriteRenderer.sprite = _rightSprite;
+                PlayAnimation(_rightAnim);
             }
             else if (_moveInputValue.x < -_spriteDeadzone)
             {
-                _spriteRenderer.sprite = _leftSprite;
+                PlayAnimation(_leftAnim);
             }
             else
             {
-                _spriteRenderer.sprite = _idleSprite;
+                _animator.StopPlayback();
+                if (_lastAnimUsed == _leftAnim)
+                {
+                    _spriteRenderer.sprite = _leftSprite; 
+                }
+                else if (_lastAnimUsed == _rightAnim)
+                {
+                    _spriteRenderer.sprite = _rightSprite;
+                }
+                else if (_lastAnimUsed == _upAnim)
+                {
+                    _spriteRenderer.sprite = _upSprite;
+                }
+                else if (_lastAnimUsed == _downAnim)
+                {
+                    _spriteRenderer.sprite = _downSprite;
+                }
             }
         }
     }
