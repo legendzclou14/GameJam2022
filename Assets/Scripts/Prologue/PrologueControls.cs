@@ -40,9 +40,9 @@ public class PrologueControls : MonoBehaviour
 
     public void PlayAnimation(int animID)
     {
-        _lastAnimUsed = animID;
-        if (_animator != null)
+        if (_animator != null && _lastAnimUsed != animID)
         {
+            _lastAnimUsed = animID;
             _animator.SetTrigger(animID);
         }
     }
