@@ -51,6 +51,16 @@ public class Enemy : MonoBehaviour
         _phase2IdleAnim = Animator.StringToHash("IdlePhase2");
     }
 
+    public void PlayIdleAnim()
+    {
+        PlayAnimation(_idleAnim);
+    }
+    
+    public void PlayPointAnim()
+    {
+        PlayAnimation(_bulletAnim);
+    }
+
     public void PlayOofAnim()
     {
         PlayAnimation(_oofAnim);

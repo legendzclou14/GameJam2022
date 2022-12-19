@@ -6,6 +6,10 @@ public class WallTrigger : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer[] _wallsToFade;
     private Coroutine _fadeCoroutine = null;
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -39,12 +43,20 @@ public class WallTrigger : MonoBehaviour
 
         float timer = 0;
         float amount = 0;
+        List<SpriteRenderer> sprites = new List<SpriteRenderer>();
+        foreach (var renderer in _wallsToFade)
+        {
+            if (renderer != null)
+            {
+                sprites.Add(renderer);
+            }
+        }
         while (timer < .5f)
         {
             amount = Mathf.Lerp(alphaStart, alphaTarget, timer / .3f);
-            foreach(var renderer in _wallsToFade)
+            foreach(var renderer in sprites)
             {
-                renderer.color = new Color(0, 0, 0, amount);
+                renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, amount);
             }
             timer += Time.deltaTime;
             yield return null;
@@ -52,7 +64,7 @@ public class WallTrigger : MonoBehaviour
 
         foreach (var renderer in _wallsToFade)
         {
-            renderer.color = new Color(0, 0, 0, amount);
+            renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, alphaTarget);
         }
         _fadeCoroutine = null;
     }

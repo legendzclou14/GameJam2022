@@ -96,13 +96,15 @@ public class GameLogicManager : MonoBehaviour
             _skipDialogue = false;
         }
 
+
         _musicSource.clip = _phaseOneMusic;
+        UI.TextBoxGO.SetActive(false);
         _musicSource.Play();
 
-        UI.TextBoxGO.SetActive(false);
+        _enemyBoss.PlayPointAnim();
         yield return UI.StartOfGame();
-        IsInDialogue = false;
 
+        IsInDialogue = false;
         _player.OnStartGame();
         _enemyBoss.OnStartGame();
     }
