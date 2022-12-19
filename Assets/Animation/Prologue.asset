@@ -12,4 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
   m_Name: Prologue
   m_EditorClassIdentifier: 
-  m_Labels: []
+  m_Labels:
+  - m_Name: LOULOL
+    m_Hash: -1641844375
+    m_CategoryList:
+    - m_Name: F1
+      m_Hash: -1239090618
+      m_Sprite: {fileID: 21300000, guid: 7966a2221b0221d4b8d24b9d6ffbb431, type: 3}
+    - m_Name: F2
+      m_Hash: 791522300
+      m_Sprite: {fileID: 21300000, guid: f56812a79fc27454880dda667cedab55, type: 3}
+    - m_Name: F3
+      m_Hash: 1479187306
+      m_Sprite: {fileID: 21300000, guid: 081016635fe0cd14ab3d71f3fb3e544e, type: 3}
+    - m_Name: B1
+      m_Hash: -767017150
+      m_Sprite: {fileID: 21300000, guid: 79927e0ae33a5904e95d2dfb39573cf1, type: 3}
+    - m_Name: B2
+      m_Hash: 1262579448
+      m_Sprite: {fileID: 21300000, guid: 5d9ac79824f22c441a891b31267cee6d, type: 3}
+    - m_Name: B3
+      m_Hash: 1011244654
+      m_Sprite: {fileID: 21300000, guid: 880e6ff26d81ee948bd91b734bdb8311, type: 3}
+    - m_Name: L1
+      m_Hash: 1288377036
+      m_Sprite: {fileID: 21300000, guid: 1bb74a748811a0540bd5b72ffd3097e7, type: 3}
+    - m_Name: L2
+      m_Hash: -708689034
+      m_Sprite: {fileID: 21300000, guid: d840c7758ccc4554bb570fcdb544b993, type: 3}
+    - m_Name: L3
+      m_Hash: -1564118048
+      m_Sprite: {fileID: 21300000, guid: e565d8ff832e87e44a64ebff1846ea81, type: 3}
+    - m_Name: R1
+      m_Hash: -1735774957
+      m_Sprite: {fileID: 21300000, guid: c09e2ef2bd777e14eb74cb7b3cf2daa9, type: 3}
+    - m_Name: R2
+      m_Hash: 25394345
+      m_Sprite: {fileID: 21300000, guid: 83ac707460a18314f9a9df90245a44e9, type: 3}
+    - m_Name: R3
+      m_Hash: 1988381759
+      m_Sprite: {fileID: 21300000, guid: 6d53bfd9bb5b2304b98b3ab6f3de1059, type: 3}
