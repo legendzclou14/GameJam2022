@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class TurntableInteractable : ChoiceInteractable
 {
-    [SerializeField] private AudioSource _source;
+    public static AudioSource _source;
     [SerializeField] private AudioClip[] _songs;
+
+    private void Awake()
+    {
+        _source = GetComponent<AudioSource>();
+    }
+
     public override void ProcessChoice(int index)
     {
         _source.clip = _songs[index];

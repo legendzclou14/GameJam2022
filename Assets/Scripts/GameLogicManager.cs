@@ -99,6 +99,7 @@ public class GameLogicManager : MonoBehaviour
 
         _musicSource.clip = _phaseOneMusic;
         UI.TextBoxGO.SetActive(false);
+
         _musicSource.Play();
 
         _enemyBoss.PlayStartOfGameAnim();
@@ -132,7 +133,7 @@ public class GameLogicManager : MonoBehaviour
         }
         else
         {
-            _musicSource.Stop();
+            StartCoroutine(FadeOut(_musicSource, 0.5f));
             EnemyBoss.PlayOofAnim();
             Player.BackToSpawn();
         }
@@ -170,6 +171,7 @@ public class GameLogicManager : MonoBehaviour
         }
 
         UI.TextBoxGO.SetActive(false);
+
         _musicSource.clip = _phaseTwoMusic;
         _musicSource.Play();
 
@@ -207,19 +209,21 @@ public class GameLogicManager : MonoBehaviour
             _skipDialogue = false;
         }
 
+        StartCoroutine(FadeOut(_musicSource, 2f));
         yield return UI.TotalFadeOut(true, 2f);
         SceneManager.LoadScene("PrologueScene");
     }
 
     private IEnumerator PlayerDeathSequence()
     {
-        _musicSource.Stop();
+        StartCoroutine(FadeOut(_musicSource, 0.5f));
         KillAllAttacks();
         IsInDialogue = true;
 
         yield return Flash(true, false, 0.01f);
         UI.ShowUI(false);
-        yield return Player.DeathCoroutine(); 
+        yield return Player.DeathCoroutine();
+        StartCoroutine(FadeOut(_musicSource, 2f));
         yield return UI.TotalFadeOut(true, 2f);
         SceneManager.LoadScene("BattleScene");
     }
@@ -241,6 +245,38 @@ public class GameLogicManager : MonoBehaviour
         }
         _flashImage.color = new Color(flashColor, flashColor, flashColor, alphaTarget);
     }
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
+    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = 0.2f;
+
+        audioSource.volume = 0;
+        audioSource.Play();
+
+        while (audioSource.volume < 1.0f)
+        {
+            audioSource.volume += startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.volume = 1f;
+    }
+
 }
 
 [System.Serializable]

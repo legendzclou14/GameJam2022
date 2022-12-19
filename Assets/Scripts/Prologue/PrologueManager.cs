@@ -43,6 +43,7 @@ public class PrologueManager : MonoBehaviour
 
     private IEnumerator EndPrologueCoroutine()
     {
+        StartCoroutine(GameLogicManager.FadeOut(TurntableInteractable._source, 2f));
         yield return PrologueUI.TotalFadeOut(true, 2);
         
         if (!Inventory.Instance.HasBeatenBoss)
