@@ -62,7 +62,7 @@ public class WallTrigger : MonoBehaviour
             yield return null;
         }
 
-        foreach (var renderer in _wallsToFade)
+        foreach (var renderer in sprites)
         {
             renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, alphaTarget);
         }

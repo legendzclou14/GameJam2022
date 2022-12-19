@@ -41,11 +41,10 @@ public class PrologueControls : MonoBehaviour
 
     public void PlayAnimation(int animID)
     {
-        if (_animator != null && _animator.enabled && _lastAnimUsed != animID)
+        if (_animator.enabled && _animator != null && _lastAnimUsed != animID)
         {
-            _animator.enabled = false;
+            _animator.StopPlayback();
             _lastAnimUsed = animID;
-            _animator.enabled = true;
             _animator.SetTrigger(animID);
         }
     }
@@ -120,6 +119,7 @@ public class PrologueControls : MonoBehaviour
             else
             {
                 _animator.Play(_noAnim);
+                _animator.StopPlayback();
 
                 if (_lastAnimUsed == _leftAnim)
                 {

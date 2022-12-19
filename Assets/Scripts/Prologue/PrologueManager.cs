@@ -10,6 +10,7 @@ public class PrologueManager : MonoBehaviour
     public PrologueUI PrologueUI => _prologueUI;
     [SerializeField] private int _playerorderinLayer = 10;
     public int PlayerorderinLayer => _playerorderinLayer;
+    [SerializeField] private GameObject[] _despawnOnPrologue;
     [SerializeField] private GameObject[] _despawnOnEpilogue;
     public Transform PlayerTransform;
 
@@ -29,10 +30,18 @@ public class PrologueManager : MonoBehaviour
     {
         if(Inventory.Instance.HasBeatenBoss)
         {
-            foreach(GameObject go in _despawnOnEpilogue)
+            foreach (GameObject go in _despawnOnEpilogue)
             {
                 Destroy(go);
             }
+        }
+        else
+        {
+            foreach(GameObject go in _despawnOnPrologue)
+            {
+                Destroy(go);
+            }
+
         }
     }
 
