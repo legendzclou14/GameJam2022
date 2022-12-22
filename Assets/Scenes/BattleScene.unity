@@ -460,6 +460,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 9147023830874160861, guid: 3e0fdaea849f8b84c807691db358bb9a, type: 3}
+      propertyPath: _maxHPFirstPhase
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147023830874160861, guid: 3e0fdaea849f8b84c807691db358bb9a, type: 3}
+      propertyPath: _maxHPSecondPhase
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e0fdaea849f8b84c807691db358bb9a, type: 3}
 --- !u!1 &1525138516

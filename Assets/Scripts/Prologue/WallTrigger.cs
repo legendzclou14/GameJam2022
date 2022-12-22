@@ -39,7 +39,20 @@ public class WallTrigger : MonoBehaviour
     private IEnumerator FadeTargetWalls(bool visible)
     {
         float alphaTarget = visible ? 1 : 0;
-        float alphaStart = _wallsToFade[0].color.a;
+        float alphaStart = -1;
+        foreach (SpriteRenderer wall in _wallsToFade)
+        {
+            if (wall != null)
+            {
+                alphaStart = wall.color.a;
+                break;
+            }
+        }
+
+        if (alphaStart == -1)
+        {
+            alphaTarget = visible ? 0 : 1;
+        }
 
         float timer = 0;
         float amount = 0;
