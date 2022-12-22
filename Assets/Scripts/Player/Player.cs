@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _maxHP;
+    [SerializeField] private int _maxHP = 100;
+    [SerializeField] private int _maxHPEasy = 200;
     [SerializeField] private AudioSource _hurtSource;
     [SerializeField] private AudioSource _itemSource;
     [SerializeField] private AudioClip _atkClip;
@@ -24,8 +25,9 @@ public class Player : MonoBehaviour
     public Action OnPlayerDeath;
     private Coroutine _hurtCoroutine = null;
 
-    private void Awake()
+    private void Start()
     {
+        _maxHP = Inventory.Instance.IsOnEasy ? _maxHPEasy : _maxHP;
         _currentHP = _maxHP;
         _spawnPos = transform.position;
     }

@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator _animatorPhase2 = null;
     [SerializeField] private int _maxHPFirstPhase = 200;
     [SerializeField] private int _maxHPSecondPhase = 200;
+    [SerializeField] private int _maxHPFirstPhaseEasy = 150;
+    [SerializeField] private int _maxHPSecondPhaseEasy = 200;
     [SerializeField] private float _timeBetweenAttacksPhaseOne = 15;
     [SerializeField] private float _timeBetweenAttacksPhaseTwo = 15;
     [SerializeField] private GameObject _zigZagAttackPrefab;
@@ -35,9 +37,9 @@ public class Enemy : MonoBehaviour
     public Action OnPhaseOneOver;
     public Action OnPhaseTwoOver;
 
-    private void Awake()
+    private void Start()
     {
-        _maxHP = _maxHPFirstPhase;
+        _maxHP = Inventory.Instance.IsOnEasy ? _maxHPFirstPhaseEasy : _maxHPFirstPhase;
         _currentHP = _maxHP;
 
         _idleAnim = Animator.StringToHash("Idle");
@@ -223,7 +225,7 @@ public class Enemy : MonoBehaviour
 
     public void StartSecondPhase()
     {
-        _maxHP = _maxHPSecondPhase;
+        _maxHP = Inventory.Instance.IsOnEasy ? _maxHPSecondPhaseEasy : _maxHPSecondPhase;
         _currentHP = _maxHP;
         _canTakeDamage = true;
         _phase = 2;

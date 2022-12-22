@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _quitButton;
+    [SerializeField] private Button _easyButton;
+    [SerializeField] private Button _normalButton;
     [SerializeField] private Button _creditsButton;
     [SerializeField] private Image _fadeImage;
     [SerializeField] private GameObject _creditsImage;
@@ -19,13 +21,14 @@ public class MainMenu : MonoBehaviour
     {
         _playButton.onClick.AddListener(OnPlay);
         _quitButton.onClick.AddListener(OnQuit);
+        _easyButton.onClick.AddListener(OnSelectEasy);
+        _normalButton.onClick.AddListener(OnSelectNormal);
         _creditsButton.onClick.AddListener(OnCloseCredits);
 
-        if (Inventory.Instance != null)
+        if (Inventory.Instance != null  && Inventory.Instance.HasBeatenBoss)
         {
             OnBackToMainMenu();
-            Destroy(Inventory.Instance.gameObject);
-            Inventory.Instance = null;
+            Inventory.Instance.HasBeatenBoss = false;
         }
         else
         {
@@ -51,7 +54,24 @@ public class MainMenu : MonoBehaviour
     }
 
     private void OnPlay()
+    { 
+        _playButton.gameObject.SetActive(false);
+        _quitButton.gameObject.SetActive(false);
+        _easyButton.gameObject.SetActive(true);
+        _normalButton.gameObject.SetActive(true);
+
+        _normalButton.Select();
+    }
+
+    private void OnSelectEasy()
     {
+        Inventory.Instance.IsOnEasy = true;
+        StartCoroutine(OnPlayCoroutine());
+    }
+    
+    private void OnSelectNormal()
+    {
+        Inventory.Instance.IsOnEasy = false;
         StartCoroutine(OnPlayCoroutine());
     }
 
