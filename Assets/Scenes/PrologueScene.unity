@@ -919,7 +919,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5f5f8a9d794b9c746b278f8a9c2732db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2025,7 +2025,10 @@ MonoBehaviour:
   _textBoxesBeforeBoss:
   - 'Les lampes sont tellement aesthetic lmao. '
   _differentTextsAfterBoss: 0
-  _textBoxesAfterBoss: []
+  _textBoxesAfterBoss:
+  - 'Une commode ikea. '
+  - "Le tiroir du haut est rempli d\u2019une quantit\xE9 astronomique de bas pli\xE9s
+    individuellement."
   _giveItem: 0
   _itemToGive: 1
 --- !u!50 &425260389
@@ -2062,7 +2065,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.82, y: -0.42}
+  m_Offset: {x: 3.3492177, y: -0.41999996}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2073,7 +2076,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.97, y: 3.28}
+  m_Size: {x: 4.9115644, y: 3.28}
   m_EdgeRadius: 0
 --- !u!1 &478364120
 GameObject:
@@ -2184,6 +2187,7 @@ Transform:
   - {fileID: 1743801658}
   - {fileID: 1128126841}
   - {fileID: 425260387}
+  - {fileID: 1543363144}
   m_Father: {fileID: 636634742}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2741,7 +2745,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.3270066, y: -1.974968}
+  m_Offset: {x: -1.6412296, y: -1.974968}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2752,7 +2756,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.5359874, y: 5.5199366}
+  m_Size: {x: 6.9075413, y: 5.5199366}
   m_EdgeRadius: 0
 --- !u!1 &636634741
 GameObject:
@@ -5629,7 +5633,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.65513706, y: -1.2850788}
+  m_Offset: {x: -0.65513706, y: -2.0292907}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5640,7 +5644,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6897259, y: 4.0701575}
+  m_Size: {x: 1.6897259, y: 2.5817335}
   m_EdgeRadius: 0
 --- !u!1 &1294655145
 GameObject:
@@ -6545,6 +6549,105 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 4.46, y: 3.83}
+  m_EdgeRadius: 0
+--- !u!1 &1543363143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1543363144}
+  - component: {fileID: 1543363147}
+  - component: {fileID: 1543363146}
+  - component: {fileID: 1543363145}
+  m_Layer: 0
+  m_Name: Pickleton
+  m_TagString: Interactable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1543363144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543363143}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.03, y: 5.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 488354808}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1543363145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543363143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0790fff63466cd448ff3e3a64f908d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textBoxesBeforeBoss: []
+  _differentTextsAfterBoss: 1
+  _textBoxesAfterBoss:
+  - "Pickleton a \xE9t\xE9 jet\xE9 au sol sans aucune consid\xE9ration."
+  - Quelle honte.
+  _giveItem: 0
+  _itemToGive: 1
+--- !u!50 &1543363146
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543363143}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!61 &1543363147
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543363143}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.93413687, y: -0.41999996}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.4892912, y: 3.28}
   m_EdgeRadius: 0
 --- !u!1 &1543799478
 GameObject:
@@ -7495,7 +7598,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.65513706, y: -2.52}
+  m_Offset: {x: -0.65513706, y: -3.6115112}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7506,7 +7609,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.6, y: 5.544297}
+  m_Size: {x: 7.6000004, y: 3.361275}
   m_EdgeRadius: 0
 --- !u!1 &1743801657
 GameObject:
@@ -8534,7 +8637,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.8364744, y: -1.1024644}
+  m_Offset: {x: -1.0349311, y: -1.2513069}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8545,7 +8648,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.23273, y: 3.6725192}
+  m_Size: {x: 2.6296432, y: 3.3748343}
   m_EdgeRadius: 0
 --- !u!4 &1939939485
 Transform:
@@ -9294,6 +9397,8 @@ MonoBehaviour:
   _despawnOnPrologue:
   - {fileID: 2086306756}
   - {fileID: 1798740821}
+  - {fileID: 1543363143}
+  - {fileID: 2593151731788162833}
   _despawnOnEpilogue:
   - {fileID: 1572284809}
   - {fileID: 528256747}
@@ -10250,8 +10355,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wallsToFade:
-  - {fileID: 2593151731788162835}
   - {fileID: 1572284813}
+  - {fileID: 2593151731788162835}
 --- !u!1 &2593151732215747359
 GameObject:
   m_ObjectHideFlags: 0
